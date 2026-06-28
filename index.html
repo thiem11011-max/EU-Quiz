@@ -1460,6 +1460,111 @@ gtag('config', 'G-BZ7J2FT6GX', { 'anonymize_ip': true });
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
   }
+
+  /* Accessibility Styles */
+  body.access-text-large { font-size: 1.2rem !important; }
+  body.access-text-large .card-box { max-width: 750px !important; }
+  body.access-text-large h1 { font-size: 3.5rem !important; }
+  body.access-text-large h2 { font-size: 2.2rem !important; }
+  body.access-text-large h3 { font-size: 1.6rem !important; }
+  body.access-text-large p, body.access-text-large div, body.access-text-large span, body.access-text-large button { font-size: 1.1rem !important; }
+  body.access-text-large .option { font-size: 1.15rem !important; }
+  body.access-text-large #q-text { font-size: 1.6rem !important; }
+
+  body.access-text-xlarge { font-size: 1.4rem !important; }
+  body.access-text-xlarge .card-box { max-width: 850px !important; }
+  body.access-text-xlarge h1 { font-size: 4rem !important; }
+  body.access-text-xlarge h2 { font-size: 2.5rem !important; }
+  body.access-text-xlarge h3 { font-size: 1.8rem !important; }
+  body.access-text-xlarge p, body.access-text-xlarge div, body.access-text-xlarge span, body.access-text-xlarge button { font-size: 1.3rem !important; }
+  body.access-text-xlarge .option { font-size: 1.35rem !important; }
+  body.access-text-xlarge #q-text { font-size: 1.9rem !important; }
+
+  body.accessibility-high-contrast {
+    background: #000000 !important;
+    color: #ffffff !important;
+    --bg-gradient: #000000;
+    --card-bg: #000000;
+    --card-border: #ffffff;
+    --text-primary: #ffffff;
+    --text-secondary: #ffff00;
+    --accent: #ffff00;
+    --accent-alt: #00ffff;
+    --gold: #ffff00;
+  }
+  body.accessibility-high-contrast .card-box {
+    background: #000000 !important;
+    border: 2px solid #ffffff !important;
+    box-shadow: none !important;
+  }
+  body.accessibility-high-contrast .option {
+    background: #000000 !important;
+    border: 2px solid #ffffff !important;
+    color: #ffffff !important;
+  }
+  body.accessibility-high-contrast .option:hover {
+    background: #222222 !important;
+    border-color: #ffff00 !important;
+  }
+  body.accessibility-high-contrast .btn-main {
+    background: #000000 !important;
+    border: 2px solid #ffffff !important;
+    color: #ffffff !important;
+  }
+  body.accessibility-high-contrast .btn-main:hover {
+    background: #222222 !important;
+    border-color: #ffff00 !important;
+  }
+  body.accessibility-high-contrast svg {
+    stroke: #ffffff !important;
+  }
+
+  /* EU-Handbuch Grid and Cards */
+  .handbook-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 12px;
+    margin-top: 15px;
+    max-height: 380px;
+    overflow-y: auto;
+    padding-right: 8px;
+  }
+  .handbook-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 10px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+  .handbook-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+  }
+  .handbook-card.locked {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  .handbook-card.locked:hover {
+    transform: none;
+    border-color: var(--card-border);
+  }
+
+  /* Emotes Floating */
+  @keyframes floatEmote {
+    0% { transform: translateY(0) scale(0.8); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(-300px) scale(1.2); opacity: 0; }
+  }
+  .floating-emote {
+    position: fixed;
+    font-size: 2.5rem;
+    pointer-events: none;
+    z-index: 10001;
+    animation: floatEmote 2.5s ease-in-out forwards;
+  }
 </style>
 </head>
 <body>
@@ -1477,13 +1582,14 @@ gtag('config', 'G-BZ7J2FT6GX', { 'anonymize_ip': true });
   <div class="top-controls">
     <div id="category-indicator" style="display:none;">Kategorie 1</div>
     <div id="round-counter" style="display:none;">Runde: 1 / 5</div>
-    <button class="btn-main" id="music-toggle-btn" style="padding: 6px 12px; font-size: 0.8rem; border-radius: 30px; display: flex; align-items: center; justify-content: center; height: 32px;" onclick="toggleMusic()" title="Soundtrack stummschalten/aktivieren">
+    <button class="btn-main" id="music-toggle-btn" style="padding: 6px 12px; font-size: 0.8rem; border-radius: 30px; display: flex; align-items: center; justify-content: center; height: 32px; border-color: rgba(244,63,94,0.5); color: var(--error);" onclick="toggleMusic()" title="Soundtrack stummschalten/aktivieren">
       <svg id="music-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M9 18V5l12-2v13"></path>
-        <circle cx="6" cy="18" r="3"></circle>
-        <circle cx="18" cy="16" r="3"></circle>
+        <line x1="1" y1="1" x2="23" y2="23"/><path d="M9 9v3a3 3 0 0 0 5.12 2.12M15 9.34V4a3 3 0 0 0-5.94-.6"/><path d="M17 16.95A7 7 0 0 1 5 12v-2m14 0v2a7 7 0 0 1-.11 1.23"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/>
       </svg>
       <span style="margin-left: 5px; font-weight:600; font-size:0.75rem;">Musik</span>
+    </button>
+    <button class="btn-main" id="accessibility-toggle-btn" style="padding: 6px 12px; font-size: 0.8rem; border-radius: 30px; display: flex; align-items: center; justify-content: center; height: 32px;" onclick="openAccessibilityPanel()" title="Barrierefreiheit">
+      ♿ <span style="margin-left: 5px; font-weight:600; font-size:0.75rem;">Barrierefreiheit</span>
     </button>
     <button class="btn-main" id="fullscreen-toggle-btn" style="padding: 6px 12px; font-size: 0.8rem; border-radius: 30px; display: flex; align-items: center; justify-content: center; height: 32px;" onclick="toggleFullscreen()" title="Vollbildmodus aktivieren/deaktivieren">
       <svg id="fullscreen-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1513,9 +1619,6 @@ gtag('config', 'G-BZ7J2FT6GX', { 'anonymize_ip': true });
     <button class="btn-main" onclick="showModeSelect()">
       Spiel Starten
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-    </button>
-    <button class="btn-main" style="margin-top: 15px; border-color: var(--gold); color: var(--gold);" onclick="openRanksDialog()">
-      🏆 Erfolge & Ruhmeshalle
     </button>
   </div>
 </div>
@@ -1740,15 +1843,17 @@ gtag('config', 'G-BZ7J2FT6GX', { 'anonymize_ip': true });
     <div class="podium-container" id="podium-area"></div>
     <div class="ranks-list" id="other-ranks"></div>
     
-    <div id="hall-of-fame-section" style="margin-top: 40px; padding: 20px; background: rgba(251, 191, 36, 0.05); border: 1px solid rgba(251, 191, 36, 0.2); border-radius: 16px; text-align: left;">
-      <h3 style="font-family: 'Space Grotesk', sans-serif; color: var(--gold); margin-top: 0; display:flex; align-items:center; gap: 8px; font-size:1.15rem; font-weight:700;">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        Sitzungs-Hall-of-Fame (Turnier-Modus)
+    <!-- Category Stats Section -->
+    <div id="category-stats-section" style="margin-top: 30px; padding: 20px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--card-border); border-radius: 16px; text-align: left; display: none;">
+      <h3 style="font-family: 'Space Grotesk', sans-serif; color: var(--accent); margin-top: 0; font-size:1.15rem; font-weight:700; display:flex; align-items:center; gap:8px;">
+        📊 Leistungsstatistik nach Kategorien
       </h3>
-      <div id="hall-of-fame-list" style="display: flex; flex-direction: column; gap: 8px; margin-top: 15px;">
-        <div style="text-align:center; opacity:0.5; font-size:0.85rem;">Noch keine Spiele in dieser Sitzung beendet.</div>
+      <div id="category-stats-bars" style="display: flex; flex-direction: column; gap: 12px; margin-top: 15px;">
+        <!-- Filled dynamically -->
       </div>
     </div>
+
+
     
     <div style="margin-top: 30px; text-align: center;">
       <button class="btn-main" style="border-color: var(--success); color: var(--success);" onclick="restartTournamentRound()">
@@ -2012,6 +2117,14 @@ gtag('config', 'G-BZ7J2FT6GX', { 'anonymize_ip': true });
       </button>
     </div>
     
+    <!-- Emote Panel -->
+    <div style="display:flex; justify-content:center; gap:10px; margin-top: 15px; padding-top:10px; border-top:1px solid var(--card-border);">
+      <button class="btn-main" style="padding:5px 8px; font-size:1.2rem; border-radius:10px;" onclick="mpPlayerSendEmote('😂')">😂</button>
+      <button class="btn-main" style="padding:5px 8px; font-size:1.2rem; border-radius:10px;" onclick="mpPlayerSendEmote('😮')">😮</button>
+      <button class="btn-main" style="padding:5px 8px; font-size:1.2rem; border-radius:10px;" onclick="mpPlayerSendEmote('🎉')">🎉</button>
+      <button class="btn-main" style="padding:5px 8px; font-size:1.2rem; border-radius:10px;" onclick="mpPlayerSendEmote('😢')">😢</button>
+      <button class="btn-main" style="padding:5px 8px; font-size:1.2rem; border-radius:10px;" onclick="mpPlayerSendEmote('🔥')">🔥</button>
+    </div>
     <div style="text-align: center; font-size: 0.85rem; opacity: 0.5; margin-top: 15px;">
       Gekoppelt mit Raum <b id="mp-player-game-code" style="color: var(--accent);">----</b>
     </div>
@@ -2211,33 +2324,7 @@ gtag('config', 'G-BZ7J2FT6GX', { 'anonymize_ip': true });
   </div>
 </dialog>
 
-<!-- Screen 7.5: Global Ranks & Achievements Dialog Overlay -->
-<dialog id="ranks-dialog">
-  <div class="quiz-box" style="max-width: 600px; text-align: left; max-height: 80vh; overflow-y: auto;">
-    <h2 style="font-family: 'Space Grotesk', sans-serif; color: var(--gold); margin-top: 0; font-size: 1.8rem; font-weight: 800; text-align: center;">🏆 Erfolge & Ruhmeshalle</h2>
-    <p style="opacity: 0.7; font-size: 0.9rem; text-align: center; margin-bottom: 25px;">Deine persistenten Errungenschaften und Turniersiege.</p>
-    
-    <!-- Section 2: Achievements -->
-    <div style="margin-bottom: 30px;">
-      <h3 style="font-family: 'Space Grotesk', sans-serif; color: var(--gold); border-bottom: 1px solid var(--card-border); padding-bottom: 8px; margin-bottom: 15px; font-size: 1.1rem; font-weight: 700;">🏆 Deine Errungenschaften</h3>
-      <div id="ranks-achievements-container" style="display: flex; flex-direction: column; gap: 8px;">
-        <!-- Filled dynamically via JS -->
-      </div>
-    </div>
 
-    <!-- Section 3: Hall of Fame -->
-    <div style="margin-bottom: 25px;">
-      <h3 style="font-family: 'Space Grotesk', sans-serif; color: var(--success); border-bottom: 1px solid var(--card-border); padding-bottom: 8px; margin-bottom: 15px; font-size: 1.1rem; font-weight: 700;">🌟 Ruhmeshalle (Turniersieger)</h3>
-      <div id="ranks-halloffame-container" style="display: flex; flex-direction: column; gap: 8px; max-height: 150px; overflow-y: auto;">
-        <!-- Filled dynamically via JS -->
-      </div>
-    </div>
-
-    <button class="btn-main" style="width: 100%; padding: 12px; margin-top: 15px;" onclick="closeRanksDialog()">
-      Schließen
-    </button>
-  </div>
-</dialog>
 
 <script>
 // Sound engine using web audio API synthesized sounds
@@ -2809,6 +2896,7 @@ function shuffleQuestionOptions(q) {
 let gameMode = 'campaign'; // 'campaign', 'timeattack', 'suddendeath', 'flags'
 let spTurnActive = false;
 let playedVisualQuestions = new Set();
+let playedSessionQuestions = new Set();
 let currentQuestionData = null; // campaign mode global reference for explanations
 let rapidFireQuestions = [];
 let rapidFireIndex = 0;
@@ -2876,14 +2964,13 @@ const countries = [
 ];
 
 const pool = {
-  // Category 1: Geschichte & Verträge
+  // Category 1
   1: {
     "Belgien": {
       1: {q: "Welchen Status hatte Belgien bei der Gründung der EGKS (Europäische Gemeinschaft für Kohle und Stahl) 1951?", o: ["Gründungsmitglied", "Beitritt 1973", "Beitritt 1981", "Beobachterstatus"], a: 0},
       2: {q: "Welcher belgische Premierminister legte 1975 einen berühmten Bericht vor, der einen entscheidenden Impuls zur Gründung einer echten Europäischen Union gab?", o: ["Guy Verhofstadt", "Leo Tindemans", "Herman Van Rompuy", "Paul-Henri Spaak"], a: 1},
       3: {q: "Welcher belgische Politiker gilt als wichtiger Gründervater der EU und leitete 1955 den Spaak-Ausschuss zur Vorbereitung der EWG?", o: ["Paul-Henri Spaak", "Charles Michel", "Jean-Claude Juncker", "Herman Van Rompuy"], a: 0}
     },
-
     "Bulgarien": {
       1: [
         {q: "Welches Kriterium war nicht Voraussetzung für Bulgariens EU-Beitritt?", o: ["Marktwirtschaft", "Übernahme des EU-Rechts", "Mitgliedschaft im Schengen-Raum", "Demokratische Institutionen"], a: 2},
@@ -2892,25 +2979,21 @@ const pool = {
       2: {q: "Welches Jahr markiert den Beginn der EU-Mitgliedschaft Bulgariens?", o: ["2004", "2005", "2007", "2009"], a: 2},
       3: {q: "Welche Funktion übernimmt Bulgarien primär in der EU-Erweiterungspolitik?", o: ["Main-Finanzierer", "Neutraler Beobachter", "Regionaler Akteur auf dem Westbalkan", "Militärischer Garant"], a: 2}
     },
-
     "Deutschland": {
       1: {q: "Wer war der erste deutsche Präsident der Europäischen Kommission (von 1958 bis 1967)?", o: ["Walter Hallstein", "Ludwig Erhard", "Willy Brandt", "Konrad Adenauer"], a: 0},
       2: {q: "In welcher deutschen Stadt wurde 1990 die Erklärung zur Wiedervereinigung Deutschlands und ihrer EU-Wirkung formell deklariert?", o: ["Bonn", "Berlin", "Frankfurt", "München"], a: 0},
       3: {q: "Welcher historische Staatsmann unterzeichnete für Deutschland die Gründungserklärung der EGKS 1951?", o: ["Konrad Adenauer", "Ludwig Erhard", "Theodor Heuss", "Willy Brandt"], a: 0}
     },
-
     "Dänemark": {
       1: {q: "Welches skandinavische Land trat 1973 zeitgleich mit dem Vereinigten Königreich und Irland der EG bei?", o: ["Schweden", "Norwegen", "Finnland", "Dänemark"], a: 3},
       2: {q: "Nach der Ablehnung welches Vertrages im Jahr 1992 handelte Dänemark vier Opt-outs (Vorbehalte) aus?", o: ["Vertrag von Maastricht", "Vertrag von Nizza", "Vertrag von Amsterdam", "Schengen-Abkommen"], a: 0},
       3: {q: "Mit welcher dänischen Beitrittsvereinbarung 1972 schied ein großes Territorium formal aus der EG aus, da es innenpolitische Autonomie erlangte?", o: ["Grönland", "Färöer-Inseln", "Island", "Bornholm"], a: 0}
     },
-
     "Estland": {
       1: {q: "Welche estnische Politikerin hat aktuell großen Einfluss auf die EU-Außenpolitik?", o: ["Kersti Kaljulaid", "Kaja Kallas", "Roberta Metsola", "Ursula von der Leyen"], a: 1},
       2: {q: "Welche Aufgabe hat Kaja Kallas innerhalb der EU?", o: ["Vorsitz im Europäischen Parlament", "Leitung der EU-Kommission", "Koordination der gemeinsamen Außenpolitik", "Führung des Europäischen Rates"], a: 2},
       3: {q: "Welche strukturelle Bedeutung hat Estlands Erfahrung für die Zukunft der EU?", o: ["Sie ermöglicht die Zentralisierung der EU-Verwaltung", "Sie dient als Referenz für moderne staatliche Organisation in Mitgliedsstaaten", "Sie ersetzt nationale Verwaltungen", "Sie beschleunigt EU-Erweiterungsprozesse"], a: 1}
     },
-
     "Finnland": {
       1: [
         {q: "Ist Finnland Mitglied der Europäischen Union?", o: ["Nein", "Seit 2004", "Ja", "Nur teilweise"], a: 2},
@@ -2919,7 +3002,6 @@ const pool = {
       2: {q: "Warum trat Finnland 1999 als eines der ersten Länder der Eurozone bei?", o: ["Wegen wirtschaftlichen Drucks aus Deutschland", "Aufgrund stabiler Wirtschaft, politischer Unterstützung und Erfüllung der Konvergenzkriterien", "Wegen einer schweren Finanzkrise", "Als Voraussetzung für den NATO-Beitritt"], a: 1},
       3: {q: "Welches Abkommen von 1992 integrierte Finnland in den europäischen Binnenmarkt, bevor es Vollmitglied wurde?", o: ["EWR-Abkommen", "Schengen-Abkommen", "Vertrag von Helsinki", "Assoziierungsvertrag"], a: 0}
     },
-
     "Frankreich": {
       1: [
         {q: "Welcher französische Politiker gilt als ein „Gründervater“ der heutigen EU?", o: ["Charles de Gaulle", "Robert Schuman", "François Mitterrand", "Emmanuel Macron"], a: 1},
@@ -2934,7 +3016,6 @@ const pool = {
         {q: "Welcher EU-Vertrag zur Vorbereitung der EU-Osterweiterung wurde im Jahr 2000 in einer französischen Stadt an der Côte d’Azur beschlossen?", o: ["Vertrag von Maastricht", "Vertrag von Amsterdam", "Vertrag von Nizza", "Vertrag von Lissabon"], a: 2}
       ]
     },
-
     "Griechenland": {
       1: [
         {q: "In welchem Jahr trat Griechenland der Europäischen Gemeinschaft (heute EU) bei?", o: ["1973", "1981", "1986", "1995"], a: 1},
@@ -2943,13 +3024,11 @@ const pool = {
       2: {q: "Was machte die griechische Regierung im Juli 2015, um gegen die harten Spar-Auflagen der EU zu protestieren?", o: ["Sie reichte den sofortigen EU-Austritt ein", "Sie ließ das Volk in einem Referendum abstimmen", "Sie verstaatlichte alle europäischen Banken im Land", "Sie weigerte sich, griechische Abgeordnete nach Brüssel zu schicken"], a: 1},
       3: {q: "Welches Hilfsprogramm wurde 1985 auf Druck Griechenlands erfunden, um ärmere Regionen im Süden finanziell zu unterstützen?", o: ["Integrierte Mittelmeerprogramme", "Der Kohäsionsfonds", "Das SURE-Programm", "NextGenerationEU"], a: 0}
     },
-
     "Irland": {
       1: {q: "In welchem Jahr trat Irland der EU (EG) bei?", o: ["1969", "1973", "1985", "1995"], a: 1},
       2: {q: "Warum müssen EU-Verträge in Irland im Gegensatz zu vielen anderen Mitgliedstaaten oft per Referendum bestätigt werden?", o: ["Aufgrund eines Beschlusses der EU-Kommission", "Aus historischer Tradition", "Wegen verfassungsrechtlicher Vorgaben", "Durch direkte Entscheidung des Premierministers"], a: 2},
-      3: {q: "Warum gilt das Karfreitagsabkommen auch als Erfolg der EU-Integration?", o: ["Die EU war offizieller Vertragspartner", "Die EU entsandte Truppen", "EU-Mitgliedschaft schuf wirtschaftliche und politische Verflechtung", "Die EU zwang Großbritannien zur Zustimmung"], a: 2}
+      3: {q: "Warum gilt das Karfreitagsabkommen auch als Erfolg der EU-Integration?", o: ["Die gemeinsame EU-Mitgliedschaft baute physische Grenzen ab und schuf politische Verflechtungen", "Die offizielle und direkte Anerkennung des Abkommens als völkerrechtlicher Vertrag durch die EU", "Die dauerhafte Entsendung von bewaffneten Friedenstruppen zur Überwachung der Demarkationslinie", "Der massive wirtschaftliche Druck und erzwungene finanzielle Sanktionen gegen Großbritannien"], a: 0}
     },
-
     "Italien": {
       1: [
         {q: "Wann trat Italien der EU (bzw. EWG) bei?", o: ["1945", "1957", "1973", "1992"], a: 1},
@@ -2958,70 +3037,60 @@ const pool = {
       2: {q: "Ist Italien ein Gründungsmitglied der EU?", o: ["Ja", "Nein", "Nur teilweise", "Erst seit 2000"], a: 0},
       3: {q: "Warum ist Italiens Staatsverschuldung für die Stabilität der EU von Bedeutung?", o: ["Sie betrifft nur Italien selbst", "Sie stärkt langfristig den Euro", "Sie kann die gesamte Eurozone destabilisieren", "Sie hat keinerlei Einfluss auf andere Staaten"], a: 2}
     },
-
     "Kroatien": {
       1: {q: "Beitrittsjahr Kroatiens?", o: ["2004", "2007", "2013", "2020"], a: 2},
       2: {q: "Welches Abkommen ebnete 2001 den Weg für Kroatiens EU-Annäherung?", o: ["Stabilisierungs- und Assoziierungsabkommen", "Vertrag von Zagreb", "Schengen-Zustimmung", "Maastricht-Zusatz"], a: 0},
       3: {q: "Wer war kroatischer Premierminister während des EU-Beitritts?", o: ["Zoran Milanović", "Andrej Plenković", "Ivo Sanader", "Jadranka Kosor"], a: 0}
     },
-
     "Lettland": {
       1: {q: "Wann wurde Lettland EU-Mitglied?", o: ["2004", "1995", "2007", "2013"], a: 0},
       2: {q: "Wo wurden die Beitrittsverhandlungen Lettlands 1999 formell beschlossen?", o: ["Helsinki-Gipfel", "Nizza-Gipfel", "Vertrag von Amsterdam", "Lissabon"], a: 0},
       3: {q: "Welche langfristige Rolle spielt Lettland für die Funktionsfähigkeit des EU-Binnenmarktes im Ostseeraum?", o: ["Als Standort zentraler EU-Behörden", "Als stabile Verbindung für Waren- und Lieferketten zwischen EU-Regionen", "Als größter Produktionsstandort", "Als führender Finanzplatz"], a: 1}
     },
-
     "Litauen": {
       1: {q: "Beitrittsjahr Litauens?", o: ["2004", "1995", "2007", "2013"], a: 0},
       2: {q: "Welcher litauische Verhandlungsführer leitete die EU-Beitrittsgespräche bis 2003?", o: ["Petras Auštrevičius", "Vytautas Landsbergis", "Dalia Grybauskaitė", "Algirdas Brazauskas"], a: 0},
       3: {q: "Über welches EU-Gremium bringt Litauen seine sicherheitspolitischen Positionen besonders ein?", o: ["Europäischer Rechnungshof", "EU-Rat der Mitgliedstaaten", "Europäische Zentralbank", "EU-Parlament"], a: 1}
     },
-
     "Luxemburg": {
       1: {q: "Welche frühere Industrie prägte Luxemburg bis ins 20. Jahrhundert stark?", o: ["Textil", "Kohle", "Stahl", "Schiffbau"], a: 2},
       2: [
         {q: "Welcher EU-Vertrag beendete formell die Praxis, die durch den Luxemburger Kompromiss entstanden war?", o: ["Maastricht", "Amsterdam", "Nizza", "Rom"], a: 2},
-        {q: "Welche konkrete Folge hatte der Luxemburger Kompromiss de facto für den Ministerrat?", o: ["Einführung der Doppelmehrheit", "Politische Vermeidung von Mehrheitsentscheidungen", "Stärkung der Kommission", "Vertragsrechtliche Vetoregelung"], a: 1}
+        {q: "Welche konkrete Folge hatte der Luxemburger Kompromiss de facto für den Ministerrat?", o: ["Politische Vermeidung von Mehrheitsentscheidungen", "Die vertragliche Einführung der doppelten Mehrheit", "Eine dauerhafte institutionelle Stärkung der Kommission", "Die vertragsrechtliche Verankerung einer Vetoregelung"], a: 0}
       ],
-      3: {q: "Warum war Luxemburg für die frühe europäische Integration besonders geeignet?", o: ["Militärische Stärke", "Geografische Randlage", "Politische Neutralität bei gleichzeitiger Westbindung", "Kolonialmacht"], a: 2}
+      3: {q: "Warum war Luxemburg für die frühe europäische Integration besonders geeignet?", o: ["Seine politische Neutralität bei gleichzeitiger enger Westbindung", "Seine militärische Vormachtstellung nach dem Zweiten Weltkrieg", "Seine geografische Randlage fernab der europäischen Konfliktherde", "Seine historische Bedeutung als einflussreiche globale Kolonialmacht"], a: 0}
     },
-
     "Malta": {
       1: {q: "Seit welchem Jahr ist Malta Mitglied der EU?", o: ["1995", "2004", "2007", "2013"], a: 1},
       2: [
         {q: "Welches Referendum entschied über Maltas EU-Beitritt?", o: ["1998", "2001", "2003", "2005"], a: 2},
-        {q: "Warum ist das Dublin-System für Malta besonders problematisch?", o: ["Fehlende Verwaltung", "Hohe Arbeitslosigkeit", "Außengrenze bei minimaler Aufnahmekapazität", "Kein Schengen-Beitritt"], a: 2}
+        {q: "Warum ist das Dublin-System für Malta besonders problematisch?", o: ["Seine Lage als Außengrenze bei minimaler Aufnahmekapazität", "Der Mangel an qualifiziertem Personal in der Verwaltung", "Die überdurchschnittlich hohe Arbeitslosigkeit im Lande", "Der noch nicht vollzogene Beitritt zum Schengen-Raum"], a: 0}
       ],
       3: {q: "Welches Referendum im März 2003 ebnete Malta den Weg in die EU?", o: ["EU-Beitrittsreferendum", "Schengen-Referendum", "Euro-Referendum", "Verfassungsreferendum"], a: 0}
     },
-
     "Niederlande": {
       1: {q: "Welcher geschichtsträchtige EU-Vertrag wurde 1992 in den Niederlanden unterzeichnet, der die Europäische Union begründete?", o: ["Vertrag von Amsterdam", "Vertrag von Maastricht", "Vertrag von Rotterdam", "Vertrag von Den Haag"], a: 1},
       2: {q: "In welchem Jahr wurde der Vertrag von Amsterdam unterzeichnet, der den Schengen-Besitzstand in EU-Recht integrierte?", o: ["1992", "1997", "2001", "2007"], a: 1},
       3: {q: "Welcher niederländische Gründervater legte 1955 den Entwurf für eine allgemeine wirtschaftliche Zollunion vor?", o: ["Jan Peter Balkenende", "Johan Willem Beyen", "Mark Rutte", "Wim Duisenberg"], a: 1}
     },
-
     "Polen": {
       1: {q: "Welcher historischen EU-Osterweiterung im Jahr 2004 trat Polen bei?", o: ["Fünfte Erweiterungsrunde", "Vierte Erweiterungsrunde", "Süderweiterung", "Westbalkan-Runde"], a: 0},
       2: {q: "Welcher polnische Premierminister unterzeichnete 2003 feierlich die EU-Beitrittsakte in Athen?", o: ["Leszek Miller", "Donald Tusk", "Jerzy Buzek", "Lech Wałęsa"], a: 0},
       3: {q: "Welche polnische Freiheitsbewegung bereitete indirekt den Weg für die Überwindung des Eisernen Vorhangs und Polens Beitritt?", o: ["Solidarność", "Armia Krajowa", "KOR", "Ruch"], a: 0}
     },
-
     "Portugal": {
       1: {q: "In welchem Jahr trat Portugal zeitgleich mit Spanien der damaligen EG bei?", o: ["1981", "1986", "1992", "1995"], a: 1},
       2: {q: "Wie heißt the 2007 in der portugiesischen Hauptstadt geschlossene EU-Reformvertrag?", o: ["Vertrag von Lissabon", "Vertrag von Porto", "Vertrag von Braga", "Vertrag von Coimbra"], a: 0},
       3: {q: "Welcher portugiesische Premierminister trieb ab 1977 die europäischen Beitrittsverhandlungen seines Landes maßgeblich voran?", o: ["Mário Soares", "António Costa", "Aníbal Cavaco Silva", "José Manuel Barroso"], a: 0}
     },
-
     "Rumänien": {
       1: [
         {q: "Rumänien trat der EU zeitgleich bei mit:", o: ["Kroatien", "Slowenien", "Bulgarien", "Ungarn"], a: 2},
-        {q: "Welche Bedingung galt als zentrale Herausforderung vor dem EU-Beitritt Rumäniens?", o: ["Umweltpolitik", "Bildungssystem", "Justizreformen und Korruptionsbekämpfung", "Außenpolitik"], a: 2}
+        {q: "Welche Bedingung galt als zentrale Herausforderung vor dem EU-Beitritt?", o: ["Die Umsetzung von Justizreformen und Korruptionsbekämpfung", "Die vollständige Angleichung der nationalen Umweltpolitik", "Die grundlegende Modernisierung des gesamten Bildungssystems", "Die strategische Neuausrichtung der nationalen Außenpolitik"], a: 0}
       ],
       2: {q: "Welche Reformen galten vor dem EU-Beitritt Rumäniens als die größte Herausforderung?", o: ["Umweltstandards", "Bildungssektor", "Justizreformen und Korruptionsbekämpfung", "Harmonisierung der Außenpolitik"], a: 2},
       3: {q: "Warum verzögerte sich der Schengen-Beitritt Rumäniens über viele Jahre?", o: ["Fehlender politischer Wille im Land", "Verfehlung der wirtschaftlichen EU-Kriterien", "Bedenken einzelner Staaten hinsichtlich Grenzmanagement und Rechtsstaatlichkeit", "Generelle Ablehnung des Schengen-Raums durch Rumänien"], a: 2}
     },
-
     "Schweden": {
       1: [
         {q: "Ist Schweden Mitglied der Europäischen Union?", o: ["Nein", "Ja", "Nur Beobachter", "Seit 2020"], a: 1},
@@ -3030,85 +3099,73 @@ const pool = {
       2: {q: "Warum hat Schweden den Euro nicht eingeführt?", o: ["Wegen einer Wirtschaftskrise", "Wegen eines Referendums 2003", "Wegen EU-Verbot", "Wegen Protesten 2010"], a: 1},
       3: {q: "Warum kann Schweden den Euro trotz formaler Beitrittsverpflichtung weiterhin vermeiden?", o: ["Wegen eines Sondervertrags", "Weil es kein EU-Mitglied ist", "Weil es die notwendigen Beitrittskriterien bewusst nicht erfüllt", "Weil die EZB es verbietet"], a: 2}
     },
-
     "Slowakei": {
       1: {q: "Beitrittsjahr der Slowakei?", o: ["2004", "1995", "2007", "2013"], a: 0},
       2: {q: "Unter welchem Premierminister wurde der EU-Kurs nach Jahren der Isolation ab 1998 neu ausgerichtet?", o: ["Mikuláš Dzurinda", "Vladimír Mečiar", "Robert Fico", "Ján Čarnogurský"], a: 0},
       3: {q: "Welcher tschechoslowakische Politiker forderte bereits 1968 eine Öffnung nach Europa?", o: ["Alexander Dubček", "Gustáv Husák", "Václav Havel", "Ludvík Svoboda"], a: 0}
     },
-
     "Slowenien": {
       1: {q: "EU-Beitrittsjahr Sloweniens?", o: ["2004", "2007", "1995", "2013"], a: 0},
       2: {q: "Wie stimmte Slowenien 2003 im EU-Referendum ab?", o: ["89,6% Ja", "52,1% Ja", "60,4% Ja", "75,2% Ja"], a: 0},
       3: {q: "Welches historische Abkommen von 1996 regelte Sloweniens Assoziierung?", o: ["Europa-Abkommen", "Vertrag von Ljubljana", "Schengen-Regel", "Maastricht-Zusatz"], a: 0}
     },
-
     "Spanien": {
       1: {q: "Wann trat Spanien der EU bei?", o: ["1970", "1986", "1999", "2004"], a: 1},
       2: {q: "Welche spanische Region sorgt aufgrund von Unabhängigkeitsbestrebungen für erhebliche politische Spannungen?", o: ["Baskenland", "Galicien", "Katalonien", "Andalusien"], a: 2},
       3: {q: "Welches innenpolitische Problem hat Spanien im EU-Vergleich in den letzten Jahrzehnten strukturell am stärksten belastet?", o: ["Zu geringe Bevölkerungsdichte", "Übermäßig hohe Inflation", "Strukturell hohe Arbeitslosigkeit", "Mangel an Agrarflächen"], a: 2}
     },
-
     "Tschechien": {
       1: {q: "In welchem geschichtsträchtigen Jahr trat Tschechien der Europäischen Union bei?", o: ["2004", "1995", "2007", "2013"], a: 0},
       2: {q: "Welcher tschechische Präsident war für seine europaskeptische Haltung bekannt und zögerte die Unterschrift unter den Vertrag von Lissabon lange hinaus?", o: ["Václav Havel", "Václav Klaus", "Miloš Zeman", "Petr Pavel"], a: 1},
       3: {q: "Wie hieß der gemeinsame Staat, aus dem Tschechien 1993 hervorging und der ab 1990 EU-Assoziierungsgespräche führte?", o: ["Tschechoslowakei", "Tschechoslowakische Sozialistische Republik", "Mitteleuropäische Union", "Königreich Böhmen"], a: 0}
     },
-
     "Ungarn": {
       1: [
         {q: "Wann trat Ungarn der EU bei?", o: ["1999", "2004", "2007", "2010"], a: 1},
         {q: "Welche Entscheidung Ungarns 1989 war für Europa besonders wichtig?", o: ["NATO-Beitritt", "Einführung des Euro", "Grenzöffnung zu Österreich", "Austritt aus der UNO"], a: 2}
       ],
       2: {q: "Welcher Vertrag von 1920 prägt das ungarische Nationalbewusstsein bis heute?", o: ["Vertrag von Versailles", "Vertrag von Maastricht", "Vertrag von Wien", "Vertrag von Trianon"], a: 3},
-      3: {q: "Warum gilt der Volksaufstand von 1956 als gesamteuropäisches Ereignis?", o: ["Er führte direkt zum EU-Beitritt", "Er beendete den Kalten Krieg", "Er zeigte früh den Widerstand gegen sowjetische Vorherrschaft in Europa", "Er vereinte Ost- und Westeuropa politisch"], a: 2}
+      3: {q: "Warum gilt der Volksaufstand von 1956 als gesamteuropäisches Ereignis?", o: ["Er demonstrierte früh den Widerstand gegen die sowjetische Vorherrschaft", "Er führte auf direktem Weg zum Beitritt zur Europäischen Gemeinschaft", "Er beendete unmittelbar und dauerhaft den Kalten Krieg in Mitteleuropa", "Er führte zu einer sofortigen politischen Vereinigung des Kontinents"], a: 0}
     },
-
     "Zypern": {
       1: {q: "Seit welchem Jahr ist Zypern Mitglied der EU?", o: ["1995", "2004", "2007", "2013"], a: 1},
-      2: {q: "Welches Ereignis führte 1974 zur dauerhaften Teilung Zyperns?", o: ["Bürgerkrieg", "NATO-Intervention", "Türkische Militärintervention", "UN-Resolution"], a: 2},
+      2: {q: "Welches Ereignis führte 1974 zur dauerhaften Teilung der Insel?", o: ["Die türkische Militärintervention auf der Insel", "Ein langwieriger, eskalierender Bürgerkrieg", "Eine militärische Intervention der NATO-Staaten", "Die Verabschiedung einer bindenden UN-Resolution"], a: 0},
       3: [
-        {q: "Welche Besonderheit betrifft Zyperns EU-Beitritt im Vergleich zu allen anderen Staaten?", o: ["Kein Eurobeitritt", "Kein Referendum", "Beitritt trotz ungelöstem Territorialkonflikt", "Später Schengen-Beitritt"], a: 2},
-        {q: "Warum gilt Zypern als Präzedenzfall im EU-Erweiterungsrecht?", o: ["Erstes geteiltes Land", "Erstes Inselmitglied", "Beitritt ohne vollständige Anwendung des Acquis", "Beitritt gegen UN-Empfehlung"], a: 2}
+        {q: "Welche Besonderheit betrifft Zyperns EU-Beitritt im Vergleich zu allen anderen Staaten?", o: ["Der Beitritt des Landes trotz des ungelösten Territorialkonflikts", "Die dauerhafte Verweigerung des Beitritts zur gemeinsamen Eurozone", "Der Verzicht auf ein klärendes nationales Referendum der Bürger", "Der erst sehr spät vollzogene Beitritt zum gemeinsamen Schengen-Raum"], a: 0},
+        {q: "Warum gilt Zypern als Präzedenzfall im EU-Erweiterungsrecht?", o: ["Der Beitritt ohne eine vollständige Anwendung des EU-Acquis im Norden", "Die Aufnahme als erstes physisch und politisch geteiltes Land der EU", "Die Anerkennung als erster reiner Inselstaat im Kreis der Mitglieder", "Der Beitritt gegen die ausdrückliche Empfehlung der Vereinten Nationen"], a: 0}
       ]
     },
-
     "Österreich": {
       1: {q: "In welchem Jahr trat Österreich zusammen mit Schweden und Finnland der EU bei?", o: ["1990", "1995", "2004", "2007"], a: 1},
       2: {q: "Unter welchem österreichischen Bundeskanzler wurde der EU-Beitrittsvertrag 1994 in Korfu unterzeichnet?", o: ["Bruno Kreisky", "Franz Vranitzky", "Wolfgang Schüssel", "Alfred Gusenbauer"], a: 1},
       3: {q: "Wie stimmte die österreichische Bevölkerung im wegweisenden Referendum 1994 über den Beitritt ab?", o: ["66,6% Ja", "52,3% Ja", "75,1% Ja", "50,5% Ja"], a: 0}
     }
   },
-
-  // Category 2: Geografie & Städte
+  // Category 2
   2: {
     "Belgien": {
       1: {q: "An welchem berühmten Fluss liegt das schöne historische Zentrum der flämischen Stadt Gent?", o: ["Schelde", "Maas", "Rhein", "Seine"], a: 0},
       2: {q: "Wie heißt der höchste Berg Belgiens im Hohen Venn?", o: ["Signal de Botrange", "Baraque Michel", "Mont Rigi", "Kemmelberg"], a: 0},
       3: {q: "Welcher berühmte belgische Kanal verbindet Brüssel direkt mit dem Seehafen Antwerpen?", o: ["Seekanal Brüssel-Schelde", "Albert-Kanal", "Gent-Brügge-Kanal", "Maas-Kanal"], a: 0}
     },
-
     "Bulgarien": {
       1: {q: "Wie heißt die wunderschöne Hauptstadt Bulgariens am Fuße des Witoscha-Gebirges?", o: ["Sofia", "Plowdiw", "Varna", "Burgas"], a: 0},
       2: {q: "Welches hohe Gebirge erstreckt sich quer durch Bulgarien und gab der gesamten Halbinsel ihren Namen?", o: ["Balkan-Gebirge", "Rila-Gebirge", "Pirin-Gebirge", "Rhodopen"], a: 0},
       3: [
         {q: "Welche bulgarische Landesgrenze ist sicherheitspolitisch für die EU besonders relevant?", o: ["Außengrenze zur Türkei", "Grenze zu Rumänien", "Grenze zu Nordmazedonien", "Küste zum Schwarzen Meer"], a: 0},
-        {q: "Welche geografische Lage Bulgariens ist für die EU sicherheitspolitisch relevant?", o: ["Zugang zur Adria", "Lage im Alpenraum", "Außengrenze zur Türkei", "Nähe zur Ostsee"], a: 2}
+        {q: "Welche geografische Lage ist für die EU sicherheitspolitisch relevant?", o: ["Zugang zur Adria", "Lage im Alpenraum", "Außengrenze zur Türkei", "Nähe zur Ostsee"], a: 2}
       ]
     },
-
     "Deutschland": {
       1: {q: "Welcher Fluss ist der längste, der vollständig innerhalb des deutschen Staatsgebiets verläuft?", o: ["Rhein", "Elbe", "Weser", "Main"], a: 2},
       2: {q: "Wie heißt die höchste Erhebung Deutschlands in den Alpen?", o: ["Zugspitze", "Watzmann", "Hochwanner", "Feldberg"], a: 0},
       3: {q: "Welche deutsche Nordsee-Insel ist für ihr markantes rotes Kliff und die lange Sanddüne bekannt?", o: ["Sylt", "Helgoland", "Norderney", "Borkum"], a: 1}
     },
-
     "Dänemark": {
       1: {q: "Wie heißt die dänische Hauptstadt, die auf den Inseln Seeland und Amager liegt?", o: ["Kopenhagen", "Aarhus", "Odense", "Aalborg"], a: 0},
       2: {q: "Wie heißt die schmale Meerenge, die dänisches Territorium (Jütland) von Schweden trennt?", o: ["Öresund", "Kattegat", "Skagerrak", "Kleiner Belt"], a: 0},
       3: {q: "Welche dänische Ostsee-Insel liegt geografisch weit östlich und ist der schwedischen Küste viel näher als der dänischen?", o: ["Bornholm", "Fünen", "Lolland", "Langeland"], a: 0}
     },
-
     "Estland": {
       1: [
         {q: "Wie heißt die Hauptstadt von Estland?", o: ["Riga", "Helsinki", "Tallinn", "Vilnius"], a: 2},
@@ -3117,47 +3174,40 @@ const pool = {
       2: {q: "Welche ist die größte Insel Estlands?", o: ["Saaremaa", "Hiiumaa", "Muhu", "Vormsi"], a: 0},
       3: {q: "Höchster Berg Estlands (und des Baltikums)?", o: ["Suur Munamägi", "Gaiziņkalns", "Juozapinė", "Vällamägi"], a: 0}
     },
-
     "Finnland": {
       1: {q: "Wie heißt die Hauptstadt Finnlands am Finnischen Meerbusen?", o: ["Turku", "Helsinki", "Tampere", "Oulu"], a: 1},
       2: {q: "Welchen Beinamen trägt Finnland wegen seiner geografischen Landschaft mit über 188.000 Seen?", o: ["Land der tausend Seen", "Land der Mitternachtssonne", "Das Grüne Herz", "Inselreich des Nordens"], a: 0},
       3: {q: "Warum ist Finnlands geografische Lage für die EU-Sicherheitspolitik besonders relevant?", o: ["Wegen zahlreicher Übersee-Kolonien", "Aufgrund seiner massiven U-Boot-Flotte", "Wegen der ca. 1340 km langen Außengrenze zu Russland", "Wegen stationierter französischer Atomwaffen"], a: 2}
     },
-
     "Frankreich": {
       1: {q: "Wie heißt der längste Fluss, der vollständig durch französisches Staatsgebiet fließt?", o: ["Loire", "Seine", "Rhône", "Garonne"], a: 0},
       2: {q: "Wie heißt der höchste Berg Frankreichs und der gesamten Europäischen Union?", o: ["Mont Blanc", "Mont Pelvoux", "Grand Casse", "Barre des Écrins"], a: 0},
       3: {q: "Welche französische Mittelmeerinsel liegt nördlich von Sardinien?", o: ["Korsika", "Martinique", "Réunion", "Guadeloupe"], a: 0}
     },
-
     "Griechenland": {
       1: {q: "Wie heißt die größte Insel Griechenlands?", o: ["Kreta", "Euböa", "Rhodos", "Korfu"], a: 0},
       2: {q: "Wie heißt das höchste Gebirgsmassiv Griechenlands, der mythologische Sitz der Götter?", o: ["Olymp", "Parnass", "Taygetos", "Pindos"], a: 0},
       3: {q: "Welches Meer trennt Griechenland von der Türkei im Osten?", o: ["Ägäisches Meer", "Ionisches Meer", "Libysches Meer", "Adriatisches Meer"], a: 0}
     },
-
     "Irland": {
       1: [
         {q: "Wie heißt die Hauptstadt der Republik Irland?", o: ["Belfast", "Dublin", "Cork", "Galway"], a: 1},
         {q: "Welche Stadt ist die Hauptstadt Irlands?", o: ["Cork", "Galway", "Limerick", "Dublin"], a: 3},
-        {q: "Warum hat Irland keine Landgrenze zu einem EU-Staat?", o: ["Wegen des Schengen-Raums", "Wegen EU-Regeln", "Nordirland gehört zum Vereinigten Königreich", "Wegen der NATO"], a: 2}
+        {q: "Warum hat Irland keine Landgrenze zu einem EU-Staat?", o: ["Weil das benachbarte Nordirland zum Vereinigten Königreich gehört", "Aufgrund der Sonderregelungen des gemeinsamen europäischen Schengen-Raums", "Wegen strikter bilateraler Verträge und spezifischer EU-Zollregeln", "Durch die militärische Bündniszugehörigkeit im Rahmen der NATO"], a: 0}
       ],
       2: {q: "Warum hat die Republik Irland keine Landgrenze zu einem anderen EU-Staat?", o: ["Wegen des Schengen-Raums", "Aufgrund spezieller EU-Sonderregeln", "Da Nordirland Teil des Vereinigten Königreichs ist", "Wegen der NATO-Mitgliedschaft"], a: 2},
       3: {q: "Wie heißt die weltberühmte, spektakuläre Steilküste im Westen Irlands?", o: ["Cliffs of Moher", "Giant's Causeway", "Ring of Kerry", "Achill Island"], a: 0}
     },
-
     "Italien": {
       1: {q: "Wie heißt der längste Fluss Italiens, der die fruchtbare Po-Ebene durchfließt?", o: ["Po", "Tiber", "Etsch", "Arno"], a: 0},
       2: {q: "Welcher aktive Vulkan liegt nahe der italienischen Stadt Neapel?", o: ["Vesuv", "Ätna", "Stromboli", "Vulcano"], a: 0},
       3: {q: "Italiens Geografie im Mittelmeer macht es zu einem zentralen Erstankunftsstaat für Migration über welche Route?", o: ["Ärmelkanal-Route", "Zentralmediterrane Route", "Balkan-Route", "Atlantische Route"], a: 1}
     },
-
     "Kroatien": {
       1: {q: "Welche Region ist berühmt für ihre felsige Adriaküste und Tausende von Inseln?", o: ["Dalmatien", "Istrien", "Slawonien", "Kvarner"], a: 0},
       2: {q: "Wie heißt das markante Gebirge entlang der kroatischen Küste?", o: ["Velebit", "Dinara", "Biokovo", "Gorski kotar"], a: 0},
       3: {q: "Welcher berühmte Nationalpark Kroatiens besteht aus 16 stufenförmig verbundenen Seen?", o: ["Nationalpark Plitvitzer Seen", "Krka", "Kornaten", "Brijuni"], a: 0}
     },
-
     "Lettland": {
       1: [
         {q: "Wie heißt die Hauptstadt Lettlands?", o: ["Vilnius", "Tallinn", "Riga", "Helsinki"], a: 2},
@@ -3166,27 +3216,24 @@ const pool = {
       ],
       2: {q: "Welche lettische Stadt spielt eine zentrale logistische Rolle im Güterverkehr des Ostseeraums?", o: ["Daugavpils", "Liepāja", "Riga", "Jelgava"], a: 2},
       3: [
-        {q: "Warum ist Lettlands geografische Lage für EU-Entscheidungen im Transport- und Handelssektor relevant?", o: ["Aufgrund der Nähe zu südeuropäischen Häfen", "Funktion als Schnittstelle zwischen verschiedenen Wirtschaftsregionen", "Wegen extrem hoher Bevölkerungsdichte im Zentrum", "Aufgrund reicher Vorkommen an fossilen Brennstoffen"], a: 1},
-        {q: "Warum ist Lettlands geografische Lage für EU-Entscheidungen relevant?", o: ["Nähe zu südeuropäischen Märkten", "Funktion als Schnittstelle zwischen verschiedenen Wirtschaftsregionen", "Hohe Bevölkerungsdichte", "Konzentration von Rohstoffen"], a: 1}
+        {q: "Warum ist Lettlands geografische Lage für EU-Entscheidungen im Transport- und Handelssektor relevant?", o: ["Seine Funktion als Schnittstelle zwischen verschiedenen Wirtschaftsregionen", "Die vermeintlich enge geografische Nähe zu den südeuropäischen Märkten", "Eine überdurchschnittlich hohe Bevölkerungsdichte in den Ballungsräumen", "Die extrem hohe Konzentration an strategischen metallischen Rohstoffen"], a: 0},
+        {q: "Warum ist Lettlands geografische Lage für EU-Entscheidungen relevant?", o: ["Seine Funktion als Schnittstelle zwischen verschiedenen Wirtschaftsregionen", "Die vermeintlich enge geografische Nähe zu den südeuropäischen Märkten", "Eine überdurchschnittlich hohe Bevölkerungsdichte in den Ballungsräumen", "Die extrem hohe Konzentration an strategischen metallischen Rohstoffen"], a: 0}
       ]
     },
-
     "Litauen": {
       1: [
         {q: "Wie heißt die Hauptstadt Litauens?", o: ["Kaunas", "Riga", "Vilnius", "Tallinn"], a: 2},
         {q: "Wie heißt die Hauptstadt Litauens?", o: ["Kaunas", "Riga", "Vilnius", "Tallinn"], a: 2},
-        {q: "Welcher geografische Faktor beeinflusst Litauens EU-Positionen stark?", o: ["Mittelmeerzugang", "Grenzlage zu einem Nicht-EU-Gebiet Russlands", "Alpenregion", "Inselstatus im Baltikum"], a: 1}
+        {q: "Welcher geografische Faktor beeinflusst Litauens EU-Positionen stark?", o: ["Die direkte Grenzlage zu einem Nicht-EU-Gebiet der Russischen Föderation", "Der fehlende direkte Zugang zu den großen Handelswegen des Mittelmeers", "Die unmittelbare Nähe zu den Gebirgszügen der mitteleuropäischen Alpen", "Der isolierte Charakter als eigenständiger Inselstaat in der Ostsee"], a: 0}
       ],
       2: {q: "Welcher geografische Faktor beeinflusst Litauens EU-Positionen stark?", o: ["Mittelmeerzugang", "Grenzlage zu einem Nicht-EU-Gebiet Russlands", "Alpenregion", "Inselstatus im Baltikum"], a: 1},
       3: {q: "Welche regionale EU-Zusammenarbeit im Ostseeraum ist für Litauen geostrategisch besonders wichtig?", o: ["Mittelmeerraum", "Alpenraum", "Ostseeraum", "Balkan-Kooperation"], a: 2}
     },
-
     "Luxemburg": {
       1: {q: "An welchem Grenzfluss zu Deutschland liegt der tiefste Punkt des Landes Luxemburg?", o: ["Sauer", "Mosel", "Our", "Alzette"], a: 1},
       2: {q: "Welche politische Staatsform hat Luxemburg als einziges seiner Art in Europa?", o: ["Republik", "Großherzogtum", "Präsidialsystem", "Bundesstaat"], a: 1},
       3: {q: "Wie heißt die waldreiche Mittelgebirgsregion im Norden Luxemburgs?", o: ["Ösling", "Gutland", "Minett", "Müllerthal"], a: 0}
     },
-
     "Malta": {
       1: [
         {q: "Wie heißt die Hauptstadt Maltas?", o: ["Sliema", "Mdina", "Valletta", "Gozo"], a: 2},
@@ -3195,64 +3242,54 @@ const pool = {
       2: {q: "Wie heißt die natürliche tiefe Hafenbucht östlich von Valletta?", o: ["Grand Harbour", "Marsamxett Harbour", "St. Paul's Bay", "Mellieha Bay"], a: 0},
       3: [
         {q: "Wie heißen die Klippen an der Südküste Maltas, die spektakulär ins Meer abfallen?", o: ["Dingli Cliffs", "Azure Window", "Blue Grotto", "Ghar Lapsi"], a: 0},
-        {q: "Welches grundlegende Spannungsproblem verkörpert Malta innerhalb der EU am stärksten?", o: ["Wachstum vs. Umwelt", "Zentrum vs. Peripherie", "Volle Integration bei minimaler staatlicher Kapazität", "Neutralität vs. Bündnisse"], a: 2}
+        {q: "Welches grundlegende Spannungsproblem verkörpert Malta innerhalb der EU am stärksten?", o: ["Die volle Integration bei gleichzeitig minimaler staatlicher Kapazität", "Der ständige Zielkonflikt zwischen wirtschaftlichem Wachstum und Umweltschutz", "Die geopolitische Spannung zwischen dem europäischen Zentrum und der Peripherie", "Der Spagat zwischen traditioneller Neutralität und neuen Militärbündnissen"], a: 0}
       ]
     },
-
     "Niederlande": {
       1: {q: "Wie heißt der große See, der durch den Bau des Abschlussdeichs aus der Zuiderzee entstand?", o: ["IJsselmeer", "Markermeer", "Waddenzee", "Grevelingenmeer"], a: 0},
       2: {q: "Welche niederländische Metropole liegt an der Mündung der Flüsse Rhein und Maas und beherbergt den größten Seehafen Europas?", o: ["Rotterdam", "Amsterdam", "Den Haag", "Utrecht"], a: 0},
       3: {q: "Wie heißt der höchste Punkt des Festlands der Niederlande?", o: ["Vaalserberg", "Sint Pietersberg", "Lattrop", "Utrechtse Heuvelrug"], a: 0}
     },
-
     "Polen": {
       1: {q: "Wie heißt der längste Fluss Polens, der durch Warschau fließt?", o: ["Weichsel", "Oder", "Warthe", "Bug"], a: 0},
       2: {q: "Welches Hochgebirge bildet die natürliche Grenze zwischen Polen und der Slowakei?", o: ["Hohe Tatra", "Riesengebirge", "Beskiden", "Sudeten"], a: 0},
       3: {q: "An welche Bucht der Ostsee grenzt der wichtige polnische Hafen Danzig?", o: ["Danziger Bucht", "Pommersche Bucht", "Frisches Haff", "Kurisches Haff"], a: 0}
     },
-
     "Portugal": {
       1: {q: "Welcher Fluss mündet bei der portugiesischen Hauptstadt Lissabon in den Atlantischen Ozean?", o: ["Tejo", "Douro", "Guadiana", "Minho"], a: 0},
       2: {q: "Wie heißt die höchste Insel-Erhebung Portugals auf den Azoren?", o: ["Ponta do Pico", "Serra da Estrela", "Fóia", "Torre"], a: 0},
       3: {q: "Welche portugiesische Inselgruppe im Atlantik ist berühmt für ihr mildes Klima und Blumenvielfalt?", o: ["Madeira", "Azoren", "Kanaren", "Kap Verde"], a: 0}
     },
-
     "Rumänien": {
       1: {q: "Welches große Gebirge durchzieht Rumänien in einem großen Bogen?", o: ["Karpaten", "Transsilvanische Alpen", "Apuseni-Gebirge", "Balkan"], a: 0},
       2: {q: "In welches Meer mündet die Donau im Osten Rumäniens?", o: ["Schwarzes Meer", "Mittelmeer", "Kaspisches Meer", "Ägäisches Meer"], a: 0},
       3: {q: "Warum ist Rumänien für die EU-Außenpolitik und Sicherheitspolitik geografisch von Bedeutung?", o: ["Wegen seiner hohen Bevölkerungsdichte", "Wegen massiver Industriekapazitäten", "Lage an der östlichen EU-Außengrenze und die direkte Nähe zur Ukraine", "Besonders ausgeprägte touristische Küsteninfrastruktur"], a: 2}
     },
-
     "Schweden": {
       1: {q: "Wie heißt der größte See Schwedens und der gesamten EU?", o: ["Vänern", "Vättern", "Mälaren", "Hjälmaren"], a: 0},
       2: {q: "Welche schwedische Insel ist die größte Insel der Ostsee?", o: ["Gotland", "Öland", "Orust", "Tjörn"], a: 0},
       3: {q: "Wie heißt der höchste Berg Schwedens im skandinavischen Gebirge?", o: ["Kebnekaise", "Sarektjåkkå", "Akka", "Helags"], a: 0}
     },
-
     "Slowakei": {
-      1: {q: "Welcher Fluss bildet im Südwesten der Slowakei die natürliche Grenze zu Ungarn?", o: ["Donau (Dunaj)", "Waag (Váh)", "Gran (Hron)", "Eipel (Ipeľ)"], a: 0},
+      1: {q: "Welcher Fluss bildet im Südwesten des Landes die natürliche Grenze zu Ungarn?", o: ["Donau (Dunaj)", "Waag (Váh)", "Gran (Hron)", "Eipel (Ipeľ)"], a: 0},
       2: {q: "Wie heißt der höchste Gipfel der Hohen Tatra in der Slowakei?", o: ["Gerlachovsky stit", "Lomnicky stit", "Krivan", "Rysy"], a: 0},
       3: {q: "Welcher Fluss ist der längste Fluss, der vollständig auf slowakischem Gebiet verläuft?", o: ["Waag", "Gran", "Theiß", "March"], a: 0}
     },
-
     "Slowenien": {
       1: {q: "Wie heißt den höchste Berg Sloweniens in den Julischen Alpen?", o: ["Triglav", "Grintovec", "Stol", "Mangart"], a: 0},
       2: {q: "Welcher smaragdgrüne Alpenfluss fließt durch den Westen Sloweniens und ist für Wildwassersport bekannt?", o: ["Soča", "Save", "Drau", "Mur"], a: 0},
       3: {q: "Welche weltberühmte Karsthöhle liegt im Südwesten Sloweniens?", o: ["Höhlen von Postojna", "Škocjan-Höhlen", "Vilenica", "Križna jama"], a: 0}
     },
-
     "Spanien": {
       1: {q: "Wie heißt die Hauptstadt Spaniens?", o: ["Barcelona", "Sevilla", "Valencia", "Madrid"], a: 3},
       2: {q: "Wie heißt der höchste Berg auf dem spanischen Festland?", o: ["Mulhacén", "Pico del Teide", "Aneto", "Pico de Veleta"], a: 0},
       3: {q: "Welches Territorium an der spanischen Mittelmeerküste sorgt aufgrund der territorialen Zugehörigkeit historisch für Spannungen mit Großbritannien?", o: ["Melilla", "Gibraltar", "Ceuta", "Menorca"], a: 1}
     },
-
     "Tschechien": {
       1: {q: "Welcher Fluss entspringt im Riesengebirge und fließt weiter nach Deutschland?", o: ["Elbe (Labe)", "Moldau (Vltava)", "Oder (Odra)", "March (Morava)"], a: 0},
       2: {q: "Wie heißt der höchste Berg Tschechiens im Riesengebirge?", o: ["Schneekoppe", "Praděd", "Lysá hora", "Klínovec"], a: 0},
       3: {q: "Durch welche historische Region Tschechiens fließt der Fluss Moldau?", o: ["Böhmen", "Mähren", "Schlesien", "Egerland"], a: 0}
     },
-
     "Ungarn": {
       1: [
         {q: "Wie heißt die Hauptstadt Ungarns?", o: ["Debrecen", "Szeged", "Budapest", "Pécs"], a: 2},
@@ -3261,7 +3298,6 @@ const pool = {
       2: {q: "Wie heißt der größte Binnensee Mitteleuropas, der im Westen Ungarns liegt?", o: ["Plattensee", "Neusiedler See", "Velencer See", "Theiß-See"], a: 0},
       3: {q: "Wie heißt die höchste Erhebung Ungarns im Mátra-Gebirge?", o: ["Kékes", "Galyatető", "Pilis", "Nagy-Milic"], a: 0}
     },
-
     "Zypern": {
       1: [
         {q: "Wie heißt die Hauptstadt Zyperns?", o: ["Limassol", "Larnaka", "Nikosia", "Paphos"], a: 2},
@@ -3272,86 +3308,78 @@ const pool = {
       2: {q: "Welche städtebauliche Besonderheit hat die Hauptstadt Nikosia im europäischen Vergleich?", o: ["Größte Hauptstadt der EU", "Einzige geteilte Hauptstadt der EU", "Hauptstadt ohne Rathaus", "Sitz zweier nationaler Regierungen"], a: 1},
       3: {q: "Wie heißt die von der UNO überwachte Trennlinie, die Zypern teilt?", o: ["Blaue Linie", "Sicherheitszone", "Grüne Linie", "Demarkationszone"], a: 2}
     },
-
     "Österreich": {
       1: {q: "Welcher berühmte Strom fließt durch die österreichische Bundeshauptstadt Wien?", o: ["Donau", "Inn", "Mur", "Drau"], a: 0},
       2: {q: "Wie heißt der höchste Berg Österreichs in den Hohen Tauern?", o: ["Großglockner", "Wildspitze", "Ortler", "Dachstein"], a: 0},
       3: {q: "Welcher große See liegt im Osten Österreichs und erstreckt sich bis nach Ungarn?", o: ["Neusiedler See", "Bodensee", "Wörthersee", "Attersee"], a: 0}
     }
   },
-
-  // Category 3: Institutionen & Politik
+  // Category 3
   3: {
     "Belgien": {
       1: {q: "Welche bedeutende EU-Institution hat ihren Hauptsitz im Berlaymont-Gebäude in Brüssel?", o: ["Europäische Kommission", "Europäisches Parlament", "Rat der EU", "Europäischer Gerichtshof"], a: 0},
       2: {q: "Welches Organ vertritt in Brüssel die Regierungen der EU-Mitgliedstaaten?", o: ["Rat der Europäischen Union", "Europäisches Parlament", "Europäische Kommission", "Europäischer Ausschuss der Regionen"], a: 0},
       3: {q: "Wie viele Sitze hat Belgien derzeit im Europäischen Parlament?", o: ["22 Sitze", "15 Sitze", "29 Sitze", "8 Sitze"], a: 0}
     },
-
     "Bulgarien": {
       1: [
         {q: "Welche EU-Institution überprüfte nach dem Beitritt Bulgariens 2007 regelmäßig dessen Reformfortschritte?", o: ["Europäischer Rat", "Europäischer Gerichtshof", "Europäische Kommission", "Europäische Zentralbank"], a: 2},
         {q: "Welche Institution überprüfte nach 2007 regelmäßig Reformfortschritte in Bulgarien?", o: ["Europäischer Rat", "Europäischer Gerichtshof", "Europäische Kommission", "Europäische Zentralbank"], a: 2}
       ],
       2: [
-        {q: "Welches Ziel verfolgte das Kooperations- und Überprüfungsverfahren (CVM) für Bulgarien?", o: ["Haushaltssanierung und Euro-Einführung", "Verbesserung des Grenzschutzes", "Stärkung von Rechtsstaatlichkeit und Korruptionsbekämpfung", "Beitritt zur NATO"], a: 2},
-        {q: "Welches Ziel verfolgte der CVM hauptsächlich?", o: ["Haushaltssanierung", "Grenzschutz", "Stärkung von Rechtsstaatlichkeit und Korruptionsbekämpfung", "Einführung des Euro"], a: 2},
+        {q: "Welches Ziel verfolgte das Kooperations- und Überprüfungsverfahren (CVM) für Bulgarien?", o: ["Die Stärkung von Rechtsstaatlichkeit und die aktive Korruptionsbekämpfung", "Die nachhaltige Haushaltssanierung und die Vorbereitung zur Euro-Einführung", "Die umfassende Modernisierung und Verbesserung des nationalen Grenzschutzes", "Die Erfüllung aller militärischen Kriterien für den Beitritt zur NATO"], a: 0},
+        {q: "Welches Ziel verfolgte der CVM hauptsächlich?", o: ["Die Stärkung von Rechtsstaatlichkeit und die aktive Korruptionsbekämpfung", "Die nachhaltige Haushaltssanierung und die Vorbereitung zur Euro-Einführung", "Die umfassende Modernisierung und Verbesserung des nationalen Grenzschutzes", "Die Erfüllung aller militärischen Kriterien für den Beitritt zur NATO"], a: 0},
         {q: "Warum galt Bulgarien lange nicht als voll schengenfähig?", o: ["Fehlende Infrastruktur", "Wirtschaftliche Schwäche", "Zweifel an Justiz und Grenzkontrollen", "Politische Neutralität"], a: 2}
       ],
       3: [
         {q: "Warum galt Bulgarien lange Zeit nicht als vollumfänglich schengenfähig?", o: ["Fehlende technische Infrastruktur", "Wirtschaftliche Schwäche", "Zweifel an der Effektivität von Justiz und Grenzkontrollen", "Gewollte politische Neutralität des Landes"], a: 2},
-        {q: "Welche Funktion übernimmt Bulgarien in der EU-Erweiterungspolitik?", o: ["Hauptfinanzierer", "Neutraler Beobachter", "Regionaler Akteur auf dem Westbalkan", "Militärischer Garant"], a: 2},
-        {q: "Welche Aussage beschreibt Bulgariens EU-Integration am treffendsten?", o: ["Vollständig abgeschlossen", "Stark eingeschränkt", "Formell integriert, politisch teils unter besonderer Beobachtung", "Nur wirtschaftlich eingebunden"], a: 2}
+        {q: "Welche Funktion übernimmt Bulgarien in der EU-Erweiterungspolitik?", o: ["Als einflussreicher regionaler Akteur auf dem Westbalkan", "Als einer der wichtigsten Hauptfinanzierer von EU-Projekten", "Als politisch komplett neutraler Beobachter aller Prozesse", "Als stärkster militärischer Garant für Sicherheit im Osten"], a: 0},
+        {q: "Welche Aussage beschreibt Bulgariens EU-Integration am treffendsten?", o: ["Formell voll integriert, politisch jedoch teils unter besonderer Beobachtung", "Als in allen Bereichen bereits vollständig und problemlos abgeschlossen", "Als durch den europäischen Rat dauerhaft und sehr stark eingeschränkt", "Als ausschließlich auf der wirtschaftlichen Ebene eng eingebunden"], a: 0}
       ]
     },
-
     "Deutschland": {
       1: {q: "Welches EU-Organ hat seinen Sitz im Eurotower in Frankfurt am Main?", o: ["Europäische Zentralbank", "Europäische Bankenaufsichtsbehörde", "Europäischer Gerichtshof", "Europol"], a: 0},
       2: {q: "Wer war die erste deutsche Präsidentin der Europäischen Kommission (seit 2019)?", o: ["Ursula von der Leyen", "Angela Merkel", "Ska Keller", "Katarina Barley"], a: 0},
       3: {q: "Wie viele Abgeordnete stellt Deutschland als bevölkerungsreichstes Land im Europäischen Parlament?", o: ["96 Abgeordnete", "755 Abgeordnete", "120 Abgeordnete", "80 Abgeordnete"], a: 0}
     },
-
     "Dänemark": {
       1: {q: "Welches EU-Behördenorgan zur Marktregulierung und Wettbewerbspolitik wird maßgeblich von der dänischen Kommissarin Margrethe Vestager geprägt?", o: ["Generaldirektion Wettbewerb", "EZB", "EBA", "Eurostat"], a: 0},
       2: {q: "Welche dänische Stadt gab den Kriterien für den Beitritt zur EU (Stabilität von Demokratie, Rechtsstaatlichkeit etc.) ihren Namen?", o: ["Kopenhagen", "Aarhus", "Odense", "Roskilde"], a: 0},
       3: {q: "Was versteht man unter dem dänischen Opt-out im Bereich Verteidigung, das Dänemark in einem Referendum 2022 aufhob?", o: ["Gemeinsame Sicherheits- und Verteidigungspolitik", "Euro-Teilnahme", "Justizzusammenarbeit", "Unionsbürgerschaft"], a: 0}
     },
-
     "Estland": {
       1: [
         {q: "Mit welcher EU-Institution arbeitet Estland besonders eng an der Modernisierung seiner Verwaltung?", o: ["Europäischer Rechnungshof", "Europäische Kommission", "Europäischer Gerichtshof", "Europäische Zentralbank"], a: 1},
         {q: "In welchem EU-Politikbereich ist Estland besonders aktiv?", o: ["Reform staatlicher Verwaltungsprozesse", "Gemeinsame Fischereipolitik", "Kohleausstieg", "Tourismusförderung"], a: 0},
-        {q: "Welches estnische Projekt wird auf EU-Ebene häufig als Beispiel genannt?", o: ["Digitales Identitätssystem für Bürger und Unternehmen", "Ausbau militärischer Infrastruktur", "Agrarsubventionsmodell", "Hafenmodernisierung"], a: 0},
+        {q: "Welches estnische Projekt wird auf EU-Ebene häufig als Beispiel genannt?", o: ["Das digitale Identitätssystem für alle Bürger und ansässigen Unternehmen", "Der umfassende Ausbau der militärischen Infrastruktur an den Landesgrenzen", "Ein neuartiges und übertragbares Agrarsubventionsmodell für die Region", "Die vollständige Modernisierung und Digitalisierung aller Handelshäfen"], a: 0},
         {q: "Wie viele Abgeordnete stellt Estland im Europäischen Parlament?", o: ["6", "7", "8", "9"], a: 1}
       ],
       2: [
         {q: "Wie viele Abgeordnete stellt Estland derzeit im Europäischen Parlament?", o: ["6", "7", "8", "9"], a: 1},
         {q: "Mit welcher EU-Institution arbeitet Estland besonders eng an Verwaltungsmodernisierung?", o: ["Europäischer Rechnungshof", "Europäische Kommission", "Europäischer Gerichtshof", "Europäische Zentralbank"], a: 1},
-        {q: "In welchem sicherheitsrelevanten Bereich bringt Estland spezielles Know-how in EU-Projekte ein?", o: ["Katastrophenschutz", "Digitale Infrastruktursicherheit", "Grenzpolizei", "Luftverteidigung"], a: 1},
+        {q: "In welchem sicherheitsrelevanten Bereich bringt Estland spezielles Know-how in EU-Projekte ein?", o: ["Digitale Infrastruktursicherheit", "Grenzüberschreitender Katastrophenschutz", "Gemeinsame europäische Grenzpolizei", "Koordinierte kontinentale Luftverteidigung"], a: 0},
         {q: "Welche estnische Politikerin hat aktuell großen Einfluss auf die EU-Außenpolitik?", o: ["Kersti Kaljulaid", "Kaja Kallas", "Roberta Metsola", "Ursula von der Leyen"], a: 1}
       ],
       3: [
-        {q: "In welchem sicherheitsrelevanten Bereich bringt Estland spezielles technologisches Know-how in EU-Projekte ein?", o: ["Katastrophenschutz", "Digitale Infrastruktursicherheit", "Grenzpolizei", "Luftverteidigung"], a: 1},
+        {q: "In welchem sicherheitsrelevanten Bereich bringt Estland spezielles technologisches Know-how in EU-Projekte ein?", o: ["Digitale Infrastruktursicherheit", "Grenzüberschreitender Katastrophenschutz", "Gemeinsame europäische Grenzpolizei", "Koordinierte kontinentale Luftverteidigung"], a: 0},
         {q: "Welche Aufgabe hat Kaja Kallas innerhalb der EU?", o: ["Vorsitz im Europäischen Parlament", "Leitung der EU-Kommission", "Koordination der gemeinsamen Außenpolitik", "Führung des Europäischen Rates"], a: 2},
         {q: "Warum untersuchen EU-Gremien häufig Estlands Verwaltungssystem?", o: ["Wegen besonders niedriger Staatsausgaben", "Wegen effizienter, überwiegend digitaler Abläufe", "Wegen hoher Automatisierung in der Industrie", "Wegen zentraler EU-Behörden im Land"], a: 1},
         {q: "Welche strukturelle Bedeutung hat Estlands Erfahrung für die Zukunft der EU?", o: ["Sie ermöglicht die Zentralisierung der EU-Verwaltung", "Sie dient als Referenz für moderne staatliche Organisation in Mitgliedsstaaten", "Sie ersetzt nationale Verwaltungen", "Sie beschleunigt EU-Erweiterungsprozesse"], a: 1}
       ]
     },
-
     "Finnland": {
       1: {q: "Gehört Finnland zum passkontrollfreien Schengen-Raum?", o: ["Nein", "Ja", "Nur im Sommer", "Nur für nordische Bürger"], a: 1},
       2: [
         {q: "Wie positioniert sich Finnland traditionell zur europäischen Integration?", o: ["Stark EU-kritisch", "Striktiv neutral", "Sehr pro-europäisch und kooperativ", "Ständig austrittswillig"], a: 2},
         {q: "Ist Finnland im Schengen-Raum?", o: ["Nein", "Ja", "Nur im Sommer", "Nur für EU-Bürger"], a: 1},
-        {q: "Warum ist Finnlands Rolle in der EU-Sicherheitspolitik wichtig?", o: ["Wegen seiner Kolonien", "Wegen seiner großen Marine", "Wegen der geografischen Lage nahe Russland", "Wegen Atomwaffen"], a: 2}
+        {q: "Warum ist Finnlands Rolle in der EU-Sicherheitspolitik wichtig?", o: ["Aufgrund seiner geografischen Lage direkt an der russischen Grenze", "Wegen seiner historischen Bedeutung als ehemalige Kolonialmacht", "Aufgrund seiner außergewöhnlich großen und schlagkräftigen Marine", "Wegen des Besitzes und der Stationierung eigener Atomwaffen"], a: 0}
       ],
       3: [
         {q: "Welche autonome Inselgruppe gehört formal zu Finnland, genießt aber einen Sonderstatus in der EU?", o: ["Åland-Inseln", "Gotland", "Bornholm", "Lofoten"], a: 0},
         {q: "In welchen Bereichen ist Finnland besonders stark in der EU?", o: ["Tourismus und Landwirtschaft", "Bildung, Digitalisierung, Innovation", "Ölproduktion", "Schwerindustrie"], a: 1},
-        {q: "Wie positioniert sich Finnland generell zur EU-Zusammenarbeit?", o: ["EU-kritisch", "Neutral", "Sehr pro-europäisch und kooperativ", "Austrittswillig"], a: 2}
+        {q: "Wie positioniert sich Finnland generell zur EU-Zusammenarbeit?", o: ["Sehr pro-europäisch und konstruktiv-kooperativ", "Historisch distanziert und dauerhaft EU-kritisch", "Politisch zurückhaltend und stets strikt neutral", "Wirtschaftlich isoliert und offen austrittswillig"], a: 0}
       ]
     },
-
     "Frankreich": {
       1: [
         {q: "In welcher französischen Stadt hat das Europäische Parlament seinen offiziellen Hauptsitz?", o: ["Paris", "Straßburg", "Lyon", "Marseille"], a: 1},
@@ -3364,7 +3392,6 @@ const pool = {
         {q: "Warum hat Frankreich seit dem Vertrag von Lissabon besonders viel Einfluss bei Abstimmungen im Rat der EU?", o: ["Weil dort die Stimmen nach der Größe der Wirtschaft vergeben werden", "Weil nach Einwohnerzahl abgestimmt wird und Frankreich sehr viele Einwohner hat", "Weil Frankreich als Atommacht ein dauerhaftes Veto-Recht bei jedem Gesetz hat", "Weil Frankreich das meiste Geld in die EU-Kasse einzahlt"], a: 1}
       ]
     },
-
     "Griechenland": {
       1: {q: "Wie nannte man das Kontrollgremium aus EU-Kommission, EZB und IWF während der griechischen Finanzkrise?", o: ["Euro-Gruppe", "Die Troika", "Europäischer Rat", "ESM-Ausschuss"], a: 1},
       2: [
@@ -3377,19 +3404,17 @@ const pool = {
         {q: "Welche EU-Institution ist die „Hüterin der Verträge“ und leitete ab 2009 Verfahren gegen Griechenland wegen falscher Haushaltsdaten ein?", o: ["Der Europäische Rechnungshof", "Die Europäische Kommission", "Das Europäische Parlament", "Der Europäische Gerichtshof"], a: 1}
       ]
     },
-
     "Irland": {
       1: {q: "Welchen EU-Vertrag lehnten die irischen Wähler zunächst 2008 ab, bevor sie ihm 2009 zustimmten?", o: ["Vertrag von Lissabon", "Vertrag von Nizza", "Vertrag von Maastricht", "Vertrag von Amsterdam"], a: 0},
       2: [
-        {q: "Welche große politische und wirtschaftliche Herausforderung brachte der Brexit für Irland?", o: ["Austritt aus der Eurozone", "Wirtschaftssanktionen durch die EU", "Die Gefahr einer neuen harten Grenze auf der irischen Insel", "Ein erzwungener EU-Austritt Irlands"], a: 2},
-        {q: "Welche große politische Herausforderung brachte der Brexit für Irland?", o: ["Euro-Austritt", "Wirtschaftssanktionen", "Gefahr einer neuen Grenze auf der Insel", "EU-Austritt Irlands"], a: 2}
+        {q: "Welche große politische und wirtschaftliche Herausforderung brachte der Brexit für Irland?", o: ["Die Gefahr einer neuen Grenze auf der irischen Insel", "Ein drohender, ungeplanter Austritt aus der Eurozone", "Direkte Wirtschaftssanktionen durch die Mitgliedstaaten", "Ein politisch erzwungener EU-Austritt des Staates Irland"], a: 0},
+        {q: "Welche große politische Herausforderung brachte der Brexit für Irland?", o: ["Die Gefahr einer neuen Grenze auf der irischen Insel", "Ein drohender, ungeplanter Austritt aus der Eurozone", "Direkte Wirtschaftssanktionen durch die Mitgliedstaaten", "Ein politisch erzwungener EU-Austritt des Staates Irland"], a: 0}
       ],
       3: [
         {q: "Welches offizielle gälische Parlamentsorgan bildet die gesetzgebende Gewalt in Irland?", o: ["Oireachtas", "Dáil Éireann", "Seanad Éireann", "Duma"], a: 0},
         {q: "Warum müssen EU-Verträge in Irland oft per Referendum bestätigt werden?", o: ["Wunsch der EU", "Tradition", "Verfassungsrechtliche Pflicht", "Entscheidung des Premierministers"], a: 2}
       ]
     },
-
     "Italien": {
       1: [
         {q: "Wo hat der Europäische Gerichtshof (EuGH) seinen Hauptsitz?", o: ["Rom", "Brüssel", "Luxemburg", "Straßburg"], a: 2},
@@ -3405,13 +3430,11 @@ const pool = {
         {q: "Welche Rolle spielt Italien bei Migration in der EU?", o: ["Keine Rolle", "Wichtiges Zielland für Flugreisen", "Zentrales Ankunftsland über das Mittelmeer", "Nur Transitland im Norden"], a: 2}
       ]
     },
-
     "Kroatien": {
       1: {q: "Welche kroatische Politikerin leitet als Kommissarin das Ressort Demokratie und Demografie?", o: ["Dubravka Šuica", "Marija Pejčinović Burić", "Kolinda Grabar-Kitarović", "Jadranka Kosor"], a: 0},
       2: {q: "Welche Institution vertritt die regionalen und lokalen Interessen in der EU?", o: ["Ausschuss der Regionen", "Wirtschafts- und Sozialausschuss", "Rat der EU", "Kommission"], a: 0},
       3: {q: "In welchem Jahr durfte Kroatien erstmals Abgeordnete ins EU-Parlament wählen?", o: ["2013", "2007", "2014", "2004"], a: 0}
     },
-
     "Lettland": {
       1: [
         {q: "Welcher lettische Politiker ist Mitglied der Europäischen Kommission und leitet ein wirtschaftlich bedeutendes Ressort?", o: ["Artis Pabriks", "Valdis Dombrovskis", "Edgars Rinkēvičs", "Andris Bērziņš"], a: 1},
@@ -3420,69 +3443,62 @@ const pool = {
       2: [
         {q: "Wie viele Abgeordnete entsendet Lettland ins Europäische Parlament?", o: ["6", "7", "8", "10"], a: 2},
         {q: "Welcher lettische Politiker ist Mitglied der Europäischen Kommission?", o: ["Artis Pabriks", "Valdis Dombrovskis", "Edgars Rinkēvičs", "Andris Bērziņš"], a: 1},
-        {q: "Auf welchem Weg bringt Lettland besonders direkt nationale Interessen in die EU-Wirtschaftspolitik ein?", o: ["Über den lettischen EU-Kommissar mit wirtschaftlichem Ressort", "Über den Europäischen Gerichtshof", "Über nationale Zollbehörden", "Über den EU-Rechnungshof"], a: 0}
+        {q: "Auf welchem Weg bringt Lettland besonders direkt nationale Interessen in die EU-Wirtschaftspolitik ein?", o: ["Über den lettischen EU-Kommissar mit einem wirtschaftlichen Ressort", "Über direkte Klageverfahren vor dem Europäischen Gerichtshof", "Über eigenständige, bilaterale Abkommen nationaler Zollbehörden", "Über Sonderprüfungen und Berichte des Europäischen Rechnungshofs"], a: 0}
       ],
-      3: {q: "Auf welchem Weg bringt Lettland besonders direkt nationale Interessen in die EU-Wirtschaftspolitik ein?", o: ["Über den lettischen EU-Kommissar mit wirtschaftlichem Ressort", "Über den Europäischen Gerichtshof", "Über nationale Zollbehörden", "Über den EU-Rechnungshof"], a: 0}
+      3: {q: "Auf welchem Weg bringt Lettland besonders direkt nationale Interessen in die EU-Wirtschaftspolitik ein?", o: ["Über den lettischen EU-Kommissar mit einem wirtschaftlichen Ressort", "Über direkte Klageverfahren vor dem Europäischen Gerichtshof", "Über eigenständige, bilaterale Abkommen nationaler Zollbehörden", "Über Sonderprüfungen und Berichte des Europäischen Rechnungshofs"], a: 0}
     },
-
     "Litauen": {
       1: [
         {q: "In welchem politischen Themenfeld ist Litauen innerhalb der EU besonders aktiv präsent?", o: ["Tourismusförderung", "Fragen der äußeren Sicherheit", "Gemeinsame Fischereipolitik", "Raumfahrtprogramme"], a: 1},
-        {q: "In welchem politischen Themenfeld ist Litauen innerhalb der EU besonders präsent?", o: ["Tourismus", "Fragen der äußeren Sicherheit", "Fischereipolitik", "Raumfahrt"], a: 1}
+        {q: "In welchem politischen Themenfeld ist Litauen innerhalb der EU besonders präsent?", o: ["Fragen der gemeinsamen äußeren Sicherheit", "Förderung des nachhaltigen Tourismus", "Reform der europäischen Fischereipolitik", "Entwicklung ziviler Raumfahrtprogramme"], a: 0}
       ],
       2: [
         {q: "Wie viele Abgeordnete stellt Litauen im Europäischen Parlament?", o: ["9", "10", "11", "13"], a: 2},
         {q: "Welcher litauische Politiker war Mitglied der Europäischen Kommission?", o: ["Gitanas Nausėda", "Andrius Kubilius", "Virginijus Sinkevičius", "Saulius Skvernelis"], a: 2},
-        {q: "Für welches Ressort war/ist Virginijus Sinkevičius zuständig?", o: ["Wirtschaft", "Verkehr", "Umwelt und Meere", "Handel"], a: 2},
-        {q: "In welchem EU-Politikbereich setzt sich Litauen besonders für gemeinsame Lösungen ein?", o: ["Agrarpolitik", "Energieversorgung und Unabhängigkeit", "Fischerei", "Regionalförderung"], a: 1}
+        {q: "Für welches Ressort war/ist Virginijus Sinkevičius zuständig?", o: ["Umwelt, Ozeane und Fischerei", "Wirtschaft und Währungsfragen", "Verkehr und transeuropäische Netze", "Internationaler Handel und Zölle"], a: 0},
+        {q: "In welchem EU-Politikbereich setzt sich Litauen besonders für gemeinsame Lösungen ein?", o: ["Gemeinsame Energieversorgung und Unabhängigkeit", "Verteilung der Mittel der Gemeinsamen Agrarpolitik", "Festlegung der Fischerei-Quoten in der Ostsee", "Strukturierte Regionalförderung strukturschwacher Räume"], a: 0}
       ],
       3: [
-        {q: "Warum gilt Litauen als strategisch relevanter Staat für die Stabilität der EU-Außengrenzen?", o: ["Wegen seiner überdurchschnittlichen Wirtschaftskraft", "Wegen seiner Lage an der östlichen EU-Grenze und seiner aktiven sicherheitspolitischen Rolle", "Wegen seiner Bevölkerungsgröße im Baltikum", "Wegen zahlreicher EU-Behörden im Land"], a: 1},
+        {q: "Warum gilt Litauen als strategisch relevanter Staat für die Stabilität der EU-Außengrenzen?", o: ["Aufgrund seiner Lage an der EU-Ostgrenze und seiner sicherheitspolitisch aktiven Rolle", "Aufgrund seiner überdurchschnittlich starken und wachsenden Wirtschaftskraft in Nordeuropa", "Wegen seiner im Vergleich zu Estland deutlich größeren Gesamtbevölkerung im Baltikum", "Aufgrund der Ansiedlung zahlreicher wichtiger EU-Behörden und Agenturen im Land"], a: 0},
         {q: "Über welches EU-Gremium bringt Litauen seine sicherheitspolitischen Positionen besonders ein?", o: ["Europäischer Rechnungshof", "EU-Rat der Mitgliedstaaten", "Europäische Zentralbank", "EU-Parlament"], a: 1},
-        {q: "Warum gilt Litauen als strategisch relevanter Staat für die Stabilität der EU-Außengrenzen?", o: ["Wegen seiner Wirtschaftskraft", "Wegen seiner Lage an der östlichen EU-Grenze und aktiven sicherheitspolitischen Rolle", "Wegen seiner Bevölkerungsgröße", "Wegen zahlreicher EU-Institutionen im Land"], a: 1}
+        {q: "Warum gilt Litauen als strategisch relevanter Staat für die Stabilität der EU-Außengrenzen?", o: ["Aufgrund seiner Lage an der EU-Ostgrenze und seiner sicherheitspolitisch aktiven Rolle", "Aufgrund seiner überdurchschnittlich starken und wachsenden Wirtschaftskraft in Nordeuropa", "Wegen seiner im Vergleich zu Estland deutlich größeren Gesamtbevölkerung im Baltikum", "Aufgrund der Ansiedlung zahlreicher wichtiger EU-Behörden und Agenturen im Land"], a: 0}
       ]
     },
-
     "Luxemburg": {
       1: [
-        {q: "Warum war Luxemburg für die frühe europäische Integration besonders geeignet?", o: ["Militärische Vormachtstellung", "Geografische Randlage", "Politische Neutralität bei gleichzeitiger Westbindung", "Bedeutung als Kolonialmacht"], a: 2},
+        {q: "Warum war Luxemburg für die frühe europäische Integration besonders geeignet?", o: ["Seine politische Neutralität bei gleichzeitiger enger Westbindung", "Seine militärische Vormachtstellung nach dem Zweiten Weltkrieg", "Seine geografische Randlage fernab der europäischen Konfliktherde", "Seine historische Bedeutung als einflussreiche globale Kolonialmacht"], a: 0},
         {q: "Luxemburg ist Mitglied welcher sicherheitspolitischen Organisation?", o: ["Neutralen Allianz", "NATO", "OPEC", "EFTA"], a: 1},
         {q: "Welche politische Staatsform hat Luxemburg?", o: ["Republik", "Föderation", "Präsidialsystem", "Großherzogtum"], a: 3}
       ],
       2: {q: "Welches strukturelle Paradox verkörpert Luxemburg innerhalb der EU am stärksten?", o: ["Wirtschaftliche Schwäche bei enormer politischer Macht", "Föderale Struktur ohne Bundesländer", "Minimalstaat mit maximalem institutionellen Einfluss", "Militärallianz trotz strikter Neutralität"], a: 2},
       3: [
-        {q: "Welches EU-Kontrollorgan überwacht die ordnungsgemäße Verwendung des EU-Haushalts und sitzt ebenfalls in Luxemburg?", o: ["Europäischer Rechnungshof", "Eurostat", "OLAF", "EuGH"], a: 0},
+        {q: "Welches EU-Kontrollorgan überwacht die ordnungsgemäße Verwendung des EU-Haushalts und sitzt ebenfalls in Luxemburg?", o: ["Europäischer Rechnungshof", "Statistisches Amt", "Betrugsbekämpfungsamt", "Europäischer Gerichtshof"], a: 0},
         {q: "Welches strukturelle Paradox verkörpert Luxemburg innerhalb der EU am stärksten?", o: ["Wirtschaftliche Schwäche bei politischer Stärke", "Föderalismus ohne Regionen", "Minimalstaat mit maximalem institutionellen Einfluss", "Neutralität trotz NATO-Mitgliedschaft"], a: 2}
       ]
     },
-
     "Malta": {
-      1: {q: "Warum ist das Dublin-System für den Staat Malta im EU-Asylsystem besonders problematisch?", o: ["Fehlende Verwaltungskapazität", "Hohe Arbeitslosigkeit im Land", "Geografische Außengrenze bei gleichzeitig minimaler Aufnahmekapazität", "Kein Schengen-Beitritt Maltas"], a: 2},
-      2: {q: "Welches grundlegende Strukturproblem betrifft Malta in EU-Gremien am stärksten?", o: ["Bündnislosigkeit", "Steuerharmonisierung", "Volle Integration bei minimaler administrativer Kapazität", "Fehlende Landgrenzen"], a: 2},
+      1: {q: "Warum ist das Dublin-System für den Staat Malta im EU-Asylsystem besonders problematisch?", o: ["Geografische Außengrenze bei gleichzeitig minimaler Aufnahmekapazität", "Großer bürokratischer Aufwand und Mangel an qualifizierten Fachkräften", "Geringe Zahl an Industriejobs bei gleichzeitig hoher Jugendarbeitslosigkeit", "Fehlender Beitritt zum Schengener Abkommen sowie Kontrollen an Fährhäfen"], a: 0},
+      2: {q: "Welches grundlegende Strukturproblem betrifft Malta in EU-Gremien am stärksten?", o: ["Volle Integration bei minimaler administrativer Kapazität", "Militärische Neutralität bei außenpolitischen Abstimmungen", "Geplante Steuerharmonisierung der Mitgliedstaaten der Eurozone", "Fehlende direkte Landgrenzen zu anderen europäischen Mitgliedstaaten"], a: 0},
       3: [
         {q: "Welche maltesische Politikerin wurde 2022 zur Präsidentin des Europäischen Parlaments gewählt?", o: ["Roberta Metsola", "Helena Dalli", "Miriam Dalli", "Therese Comodini"], a: 0},
-        {q: "In welchem Politikfeld geriet Malta wiederholt unter starken EU-Druck?", o: ["Bildung", "Umwelt", "Steuer- und Finanzaufsicht", "Verkehr"], a: 2}
+        {q: "In welchem Politikfeld geriet Malta wiederholt unter starken EU-Druck?", o: ["Steuer- und Finanzaufsicht", "Gemeinsame Bildungspolitik", "Verschärfte Umweltauflagen", "Ausbau der Verkehrswege"], a: 0}
       ]
     },
-
     "Niederlande": {
       1: {q: "In welcher niederländischen Stadt hat die Justizbehörde der EU für grenzüberschreitende Kriminalität (Eurojust) ihren Sitz?", o: ["Den Haag", "Amsterdam", "Rotterdam", "Utrecht"], a: 0},
       2: {q: "Welcher niederländische Politiker war von 2014 bis 2019 Erster Vizepräsident der Europäischen Kommission?", o: ["Frans Timmermans", "Jeroen Dijsselbloem", "Mark Rutte", "Wopke Hoekstra"], a: 0},
       3: {q: "Welches Amt für die Vergabe europäischer Patente hat eine große Zweigstelle in Rijswijk bei Den Haag?", o: ["Europäisches Patentamt", "Amt der EU für geistiges Eigentum", "Gemeinsame Forschungsstelle", "eu-LISA"], a: 0}
     },
-
     "Polen": {
       1: {q: "Welcher polnische Spitzenpolitiker war von 2014 bis 2019 Präsident des Europäischen Rates?", o: ["Donald Tusk", "Jerzy Buzek", "Mateusz Morawiecki", "Andrzej Duda"], a: 0},
       2: {q: "Welches EU-Amt zum Schutz europäischer Grenzen (Frontex) hat seinen Hauptsitz in der polnischen Hauptstadt Warschau?", o: ["Frontex", "Europol", "Cepol", "Eurojust"], a: 0},
       3: {q: "Welcher polnische Ökonom war ab 2004 der erste EU-Kommissar Polens (zuständig für Regionalpolitik)?", o: ["Danuta Hübner", "Marek Belka", "Leszek Balcerowicz", "Janusz Lewandowski"], a: 0}
     },
-
     "Portugal": {
       1: {q: "Welche europäische Agentur für die Sicherheit des Seeverkehrs (EMSA) sitzt in Lissabon?", o: ["EMSA", "Frontex", "EFCA", "EASA"], a: 0},
       2: {q: "Welcher portugiesische Politiker amtierte ab 2004 zehn Jahre lang als Präsident der Europäischen Kommission?", o: ["José Manuel Barroso", "Mário Soares", "António Guterres", "Aníbal Cavaco Silva"], a: 0},
       3: {q: "Welcher Grundsatz besagt, dass die Maßnahmen der EU nicht über das zur Erreichung der Verträge erforderliche Maß hinausgehen dürfen?", o: ["Verhältnismäßigkeitsprinzip", "Subsidiaritätsprinzip", "Transparenzprinzip", "Solidaritätsprinzip"], a: 0}
     },
-
     "Rumänien": {
       1: [
         {q: "Welche Institution überwachte Rumäniens Reformen im Justizbereich nach dem Beitritt?", o: ["Europäisches Parlament", "Europäischer Rechnungshof", "Europäische Kommission", "Europäische Zentralbank"], a: 2},
@@ -3490,21 +3506,20 @@ const pool = {
       ],
       2: [
         {q: "Welches Kontroll- und Überprüfungsverfahren galt für Rumänien nach 2007?", o: ["Fiskalpakt", "Stabilitätsmechanismus", "CVM", "Schengen-Protokoll"], a: 2},
-        {q: "Warum ist Rumänien für die EU-Außenpolitik von Bedeutung?", o: ["Hohe Bevölkerungsdichte", "Industriekapazitäten", "Lage an der EU-Ostgrenze und Nähe zur Ukraine", "Touristische Infrastruktur"], a: 2},
+        {q: "Warum ist Rumänien für die EU-Außenpolitik von Bedeutung?", o: ["Seine Lage direkt an der EU-Ostgrenze und die Nähe zur Ukraine", "Seine überdurchschnittlich hohe Bevölkerungsdichte in Osteuropa", "Die starken Industriekapazitäten im Bereich des Automobilbaus", "Der schnelle Ausbau der touristischen Infrastruktur am Schwarzen Meer"], a: 0},
         {q: "Welche EU-Mechanismus galt auch für Rumänien nach dem Beitritt?", o: ["Fiskalpakt", "Stabilitätsmechanismus", "CVM", "Schengen-Protokoll"], a: 2},
         {q: "Welche Rolle spielt Rumänien im EU-Grenzschutz?", o: ["Keine besondere", "Nur Transitstaat", "Außengrenzstaat der EU", "Binnenstaat"], a: 2}
       ],
       3: [
         {q: "Welche offizielle Rolle nimmt Rumänien bezüglich des Schutzes der europäischen Binnengrenzen ein?", o: ["Keine besondere Rolle", "Reiner Transitstaat", "Wichtiger Außengrenzstaat der EU", "Reiner Binnenstaat ohne Grenzen"], a: 2},
-        {q: "Warum war Rumänien lange nicht Teil des Schengen-Raums?", o: ["Fehlender politischer Wille", "Wirtschaftliche Kriterien", "Bedenken hinsichtlich Grenzmanagement und Rechtsstaatlichkeit", "Ablehnung durch Rumänien selbst"], a: 2},
-        {q: "Welche Beschreibung trifft Rumäniens Rolle in der EU am ehesten?", o: ["Peripherer Mitgliedstaat", "Wirtschaftlich isoliert", "Strategischer Grenz- und Sicherheitspartner der EU", "Politisch neutral"], a: 2}
+        {q: "Warum war Rumänien lange nicht Teil des Schengen-Raums?", o: ["Die Bedenken hinsichtlich Grenzmanagement und Rechtsstaatlichkeit", "Der fehlende politische Wille der rumänischen Regierung", "Das Nichterreichen der grundlegenden ökonomischen Kriterien", "Die bewusste politische Ablehnung durch Rumänien selbst"], a: 0},
+        {q: "Welche Beschreibung trifft Rumäniens Rolle in der EU am ehesten?", o: ["Ein strategisch wichtiger Grenz- und Sicherheitspartner", "Ein weitgehend peripherer Mitgliedstaat ohne Einfluss", "Ein wirtschaftlich fast vollständig isoliertes Agrarland", "Ein politisch stets neutraler Akteur im Osten Europas"], a: 0}
       ]
     },
-
     "Schweden": {
       1: {q: "Ist Schweden Teil des passkontrollfreien Schengen-Raums?", o: ["Nein", "Ja", "Nur mit Einschränkungen", "Seit 2022 nicht mehr"], a: 1},
       2: [
-        {q: "Welches schwedische ECDC zur Krankheitsüberwachung hat seinen Sitz nahe Stockholm?", o: ["Europäisches Zentrum für Prävention und Kontrolle von Krankheiten", "EMA", "EFSA", "ECHA"], a: 0},
+        {q: "Welches schwedische ECDC zur Krankheitsüberwachung hat seinen Sitz nahe Stockholm?", o: ["Europäisches Zentrum für Prävention und Kontrolle von Krankheiten (ECDC)", "Europäische Arzneimittel-Agentur (EMA)", "Europäische Behörde für Lebensmittelsicherheit (EFSA)", "Europäische Chemikalienagentur (ECHA)"], a: 0},
         {q: "Ist Schweden im Schengen-Raum?", o: ["Nein", "Ja", "Nur mit Einschränkungen", "Seit 2022 nicht mehr"], a: 1}
       ],
       3: [
@@ -3512,19 +3527,16 @@ const pool = {
         {q: "Welche politischen Themen vertritt Schweden besonders stark in der EU?", o: ["Landwirtschaft und Fischerei", "Umwelt, Digitalisierung, soziale Standards", "Militärische Expansion", "Atomenergie-Ausbau"], a: 1}
       ]
     },
-
     "Slowakei": {
       1: {q: "Welcher slowakische Politiker ist der dienstälteste EU-Kommissar und amtierte als Vizepräsident?", o: ["Maroš Šefčovič", "Ján Figeľ", "Miroslav Lajčák", "Ján Kubiš"], a: 0},
-      2: {q: "Wer ernennt die Richter des Europäischen Gerichtshofs?", o: ["Die Regierungen der Mitgliedstaaten im gegenseitigen Einvernehmen", "Das Europäische Parlament", "Der Kommissionspräsident", "Der Europäische Rat per Mehrheitsbeschluss"], a: 0},
+      2: {q: "Wer ernennt die Richter des Europäischen Gerichtshofs?", o: ["Die Regierungen der Mitgliedstaaten im gegenseitigen Einvernehmen", "Das Europäische Parlament nach Anhörung des Rechtsausschusses", "Der Kommissionspräsident im Einvernehmen mit dem EU-Parlament", "Der Europäische Rat per qualifiziertem Mehrheitsbeschluss"], a: 0},
       3: {q: "Welcher Slowake war der erste EU-Kommissar für Bildung und Kultur ab 2004?", o: ["Ján Figeľ", "Maroš Šefčovič", "Eduard Kukan", "Mikuláš Dzurinda"], a: 0}
     },
-
     "Slowenien": {
       1: {q: "Welcher slowenische Politiker leitet seit 2019 das wichtige EU-Kommissariat für Krisenmanagement?", o: ["Janez Lenarčič", "Janez Potočnik", "Violeta Bulc", "Borut Pahor"], a: 0},
       2: {q: "Welches Dokument regelt die Grundrechte der EU-Bürger verbindlich?", o: ["Charta der Grundrechte der EU", "Europa-Erklärung", "Menschenrechtskonvention", "Römischer Pakt"], a: 0},
       3: {q: "Welche Slowenin war von 2014 bis 2019 EU-Kommissarin für Verkehr?", o: ["Violeta Bulc", "Alenka Bratušek", "Tanja Fajon", "Ljudmila Novak"], a: 0}
     },
-
     "Spanien": {
       1: [
         {q: "Gehört Spanien zum Schengen-Raum?", o: ["Ja", "Nein", "Nur teilweise", "Nur für Nicht-Touristen"], a: 0},
@@ -3533,21 +3545,19 @@ const pool = {
       ],
       2: [
         {q: "Wie viele Sitze hat Spanien derzeit im Europäischen Parlament?", o: ["30 Sitze", "61 Sitze", "90 Sitze", "120 Sitze"], a: 1},
-        {q: "Welche Rolle spielt Spanien in der Klimapolitik?", o: ["Keine", "Führend bei erneuerbaren Energien", "Nur Kohleenergie", "Gegen Klimaschutz"], a: 1}
+        {q: "Welche Rolle spielt Spanien in der Klimapolitik?", o: ["Führende Rolle beim Ausbau von Solar- und Windkraft", "Keinerlei strategische Beteiligung an EU-Zielen", "Fokus liegt weiterhin primär auf heimischer Kohle", "Strikte Ablehnung gemeinsamer europäischer Richtlinien"], a: 0}
       ],
       3: [
-        {q: "Welche geografische Region macht Spanien zu einer strategisch wichtigen Schnittstelle in den EU-Außenbeziehungen?", o: ["Nähe zu Asien", "Direkte Nachbarschaft zu Afrika", "Historische Bindung und Brücke nach Lateinamerika", "Enge Verbindung zu Australien"], a: 2},
+        {q: "Welche geografische Region macht Spanien zu einer strategisch wichtigen Schnittstelle in den EU-Außenbeziehungen?", o: ["Die historisch gewachsene Bindung und Brücke nach Lateinamerika", "Die geografische Nähe zu den asiatischen Handelsräumen", "Die direkte Nachbarschaft und Grenzlinie zum afrikanischen Kontinent", "Die engen wirtschaftlichen Verbindungen zum pazifischen Raum"], a: 0},
         {q: "Warum ist Spanien wichtig für die EU-Außenbeziehungen?", o: ["Nähe zu Asien", "Nähe zu Afrika", "Verbindung zu Lateinamerika", "Verbindung zu Australien"], a: 2},
         {q: "Was kann durch Bewegungen wie in Katalonien passieren?", o: ["Mehr Tourismus", "Politische Spannungen in Spanien und der EU", "Weniger Gesetze", "Keine Auswirkungen"], a: 1}
       ]
     },
-
     "Tschechien": {
       1: {q: "Welche tschechische Politikerin wurde 2014 Vizepräsidentin der EU-Kommission und Kommissarin für Werte und Transparenz?", o: ["Věra Jourová", "Danuše Nerudová", "Kateřina Konečná", "Markéta Pekarová Adamová"], a: 0},
       2: {q: "Welcher tschechische Diplomat diente ab 2009 als erster EU-Erweiterungskommissar aus den neuen Mitgliedstaaten?", o: ["Štefan Füle", "Vladimír Špidla", "Jan Fischer", "Karel Schwarzenberg"], a: 0},
       3: {q: "Wie heißt das ständige Vertretungsgremium der Botschafter der EU-Mitgliedstaaten in Brüssel, das den Ministerrat vorbereitet?", o: ["AStV", "Ausschuss der Regionen", "Europäischer Rat", "Rechnungshof"], a: 0}
     },
-
     "Ungarn": {
       1: {q: "Wie positionierte sich Ungarn politisch in der EU-Flüchtlingskrise 2015?", o: ["Unterstützung der EU-Verteilquoten", "Vollständige Grenzöffnung", "Konsequente Ablehnung von Quoten & Grenzsicherung", "Finanzielle Hilfsangebote an Erstaufnahmeländer"], a: 2},
       2: {q: "Welches ungarische Verfassungsorgan beschließt die Gesetze in Kooperation mit dem Ministerrat?", o: ["Europäisches Parlament", "Europäische Kommission", "Europäischer Rat", "Wirtschafts- und Sozialausschuss"], a: 0},
@@ -3557,81 +3567,70 @@ const pool = {
         {q: "Warum kürzte die EU zeitweise Fördergelder für Ungarn?", o: ["Wirtschaftskrise", "Hohe Staatsverschuldung", "Zweifel an Rechtsstaatlichkeit und Korruptionsbekämpfung", "Euro-Ablehnung"], a: 2}
       ]
     },
-
     "Zypern": {
       1: {q: "Welcher Teil Zyperns wendet das EU-Recht de facto derzeit nicht an?", o: ["Der Westteil", "Die Küstenregionen", "Der nördliche Landesteil", "Die Bergregion"], a: 2},
       2: [
-        {q: "Wie lautet der offizielle rechtliche Status des nördlichen Landesteils von Zypern aus EU-Sicht?", o: ["Es gilt als autonomer Staat", "Es gilt als assoziierter Drittstaat", "Das EU-Recht ist dort suspendiert", "Es ist kein EU-Territorium"], a: 2},
+        {q: "Wie lautet der offizielle rechtliche Status dieses nördlichen Gebiets aus EU-Sicht?", o: ["Es gilt als autonomer Staat", "Es gilt als assoziierter Drittstaat", "Das EU-Recht ist dort suspendiert", "Es ist kein EU-Territorium"], a: 2},
         {q: "Welcher Teil Zyperns wendet das EU-Recht nicht an?", o: ["Westteil", "Küstenregion", "Nördlicher Landesteil", "Bergregion"], a: 2},
-        {q: "Wie lautet der rechtliche Status des nördlichen Landesteils von Zypern aus EU-Sicht?", o: ["Autonom", "Assoziiert", "EU-Recht suspendiert", "Drittstaat"], a: 2}
+        {q: "Wie lautet der rechtliche Status dieses Gebiets aus EU-Sicht?", o: ["Autonom", "Assoziiert", "EU-Recht suspendiert", "Drittstaat"], a: 2}
       ],
       3: [
         {q: "Welche EU-Grundfreiheit ist auf der Insel Zypern durch die Teilung de facto eingeschränkt?", o: ["Warenverkehr", "Kapitalverkehr", "Dienstleistungsfreiheit", "Personenfreizügigkeit"], a: 3},
-        {q: "Welche EU-Grundfreiheit ist auf Zypern durch die Teilung de facto eingeschränkt?", o: ["Warenverkehr", "Kapitalverkehr", "Dienstleistungsfreiheit", "Personenfreizügigkeit"], a: 3}
+        {q: "Welche EU-Grundfreiheit ist auf der Insel faktisch eingeschränkt?", o: ["Warenverkehr", "Kapitalverkehr", "Dienstleistungsfreiheit", "Personenfreizügigkeit"], a: 3}
       ]
     },
-
     "Österreich": {
       1: {q: "Welcher Österreicher war von 2010 bis 2019 EU-Kommissar, unter anderem zuständig für Regionalpolitik und Erweiterung?", o: ["Johannes Hahn", "Wolfgang Schüssel", "Heinz Fischer", "Othmar Karas"], a: 0},
       2: {q: "Welches europäische Zentrum zur Beobachtung von Rassismus und Fremdenfeindlichkeit ging in der in Wien ansässigen FRA auf?", o: ["EUMC", "FRA", "Eurofound", "OSZE"], a: 0},
       3: {q: "Aus wie vielen Abgeordneten besteht das Europäische Parlament insgesamt seit dem Austritt des Vereinigten Königreichs?", o: ["705 Abgeordnete", "750 Abgeordnete", "650 Abgeordnete", "500 Abgeordnete"], a: 0}
     }
   },
-
-  // Category 4: Kultur & Symbole
+  // Category 4
   4: {
     "Belgien": {
       1: {q: "Welche weltbekannte Comicfigur, erschaffen vom belgischen Zeichner Hergé, reist in seinen Geschichten oft um die Welt?", o: ["Tim & Struppi", "Asterix", "Lucky Luke", "Die Schlümpfe"], a: 0},
       2: {q: "Wie heißt das monumentale Brüsseler Wahrzeichen, das zur Weltausstellung 1958 ein Eisenkristall in 165-milliardenfacher Vergrößerung darstellt?", o: ["Atomium", "Manneken Pis", "Jubiläumspark", "Grand-Place"], a: 0},
       3: {q: "Welcher berühmte belgische surrealistische Maler schuf das weltbekannte werk „Dies ist keine Pfeife“?", o: ["René Magritte", "Paul Delvaux", "James Ensor", "Félicien Rops"], a: 0}
     },
-
     "Bulgarien": {
       1: {q: "Welches traditionelle Frühlingssymbol aus rot-weißer Wolle schenkt man sich in Bulgarien am 1. März als Glücksbringer?", o: ["Marteniza", "Koledari", "Nestinarstvo", "Kukeri"], a: 0},
       2: {q: "Welche uralte thrakische Grabstätte in Bulgarien gehört zum UNESCO-Weltkulturerbe?", o: ["Grabmal von Kasanlak", "Rila-Kloster", "Kirche von Bojana", "Madara-Reiter"], a: 0},
       3: {q: "Welcher weltberühmte bulgarisch-französische Verpackungskünstler verhüllte den Berliner Reichstag und den Arc de Triomphe?", o: ["Christo", "Anish Kapoor", "Ai Weiwei", "Marina Abramović"], a: 0}
     },
-
     "Deutschland": {
       1: {q: "Welcher berühmte deutsche Komponist schuf die Melodie der Europahymne („Ode an die Freude“)?", o: ["Ludwig van Beethoven", "Johann Sebastian Bach", "Wolfgang Amadeus Mozart", "Richard Wagner"], a: 0},
       2: {q: "Welche epische gotische Kathedrale in Deutschland gehört zum UNESCO-Weltkulturerbe und ist eines der meistbesuchten Bauwerke des Landes?", o: ["Kölner Dom", "Ulmer Münster", "Frauenkirche Dresden", "Speyerer Dom"], a: 0},
       3: {q: "Welche weltbekannte Kunst-, Design- und Architekturschule wurde 1919 von Walter Gropius in Weimar gegründet?", o: ["Bauhaus", "Werkbund", "Jugendstil-Akademie", "Düsseldorfer Schule"], a: 0}
     },
-
     "Dänemark": {
       1: {q: "Welcher weltberühmte dänische Dichter schuf die unvergesslichen Märchen „Die kleine Meerjungfrau“ und „Das hässliche Entlein“?", o: ["Hans Christian Andersen", "Søren Kierkegaard", "Henrik Ibsen", "Karen Blixen"], a: 0},
       2: {q: "Wie heißt das dänische Lebensgefühl, das für Gemütlichkeit, Herzlichkeit und das Genießen der kleinen Dinge steht?", o: ["Hygge", "Lagom", "Sisu", "Lykke"], a: 0},
       3: {q: "Welches dänische Spielzeugunternehmen, dessen Name sich von „leg godt“ (spiel gut) ableitet, ist der größte Spielzeughersteller der Welt?", o: ["LEGO", "Playmobil", "Brio", "Mattel"], a: 0}
     },
-
     "Estland": {
       1: {q: "Wie heißt das weltbekannte estnische Liederfest, das alle 5 Jahre in Tallinn stattfindet?", o: ["Laulupidu", "Songfest", "Baltica", "Jazzkaar"], a: 0},
       2: {q: "Welcher weltberühmte estnische Komponist entwickelte den minimalistischen Tintinnabuli-Stil?", o: ["Arvo Pärt", "Eduard Tubin", "Veljo Tormis", "Rudolf Tobias"], a: 0},
       3: {q: "Welches Nationalepos beschreibt die Abenteuer des estnischen Riesenhelden?", o: ["Kalevipoeg", "Kalevala", "Lāčplēsis", "Nibelungenlied"], a: 0}
     },
-
     "Finnland": {
       1: {q: "Welches traditionelle Heißluftbad gehört fest zur finnischen Kultur und ist UNESCO-Weltkulturerbe?", o: ["Sauna", "Hamam", "Banja", "Therme"], a: 0},
       2: {q: "In welchen technologie- und bildungspolitischen Bereichen gilt Finnland in der EU als führender Staat?", o: ["Massentourismus und Agrarwirtschaft", "Bildung, Digitalisierung und Innovation", "Rohöl- und Erdgasförderung", "Traditionelle Schwerindustrie"], a: 1},
       3: {q: "Welcher finnische Nationalkomponist schrieb die berühmte symphonische Dichtung 'Finlandia'?", o: ["Jean Sibelius", "Einojuhani Rautavaara", "Kaija Saariaho", "Esa-Pekka Salonen"], a: 0}
     },
-
     "Frankreich": {
       1: {q: "Welcher berühmte französische Dichter schrieb die weltbekannte historische Tragödie „Der Glöckner von Notre-Dame“?", o: ["Victor Hugo", "Gustave Flaubert", "Émile Zola", "Charles Baudelaire"], a: 0},
       2: {q: "Welches weltberühmte französische Kunstmuseum beherbergt die Mona Lisa von Leonardo da Vinci?", o: ["Louvre", "Musée d'Orsay", "Centre Pompidou", "Musée de l'Orangerie"], a: 0},
       3: {q: "Welcher französische Pionier des Impressionismus schuf die weltbekannte Serie der „Seerosen“ in seinem Garten in Giverny?", o: ["Claude Monet", "Pierre-Auguste Renoir", "Edgar Degas", "Paul Cézanne"], a: 0}
     },
-
     "Griechenland": {
       1: {q: "Welche alte Währung hatte Griechenland, bevor im Alltag der Euro als Bargeld eingeführt wurde?", o: ["Lira", "Drachme", "Escudo", "Dinar"], a: 1},
       2: {q: "Welcher antike griechische Philosoph war der Lehrer von Alexander dem Großen?", o: ["Aristoteles", "Sokrates", "Platon", "Pythagoras"], a: 0},
       3: {q: "Welcher traditionelle griechische Tanz wurde durch den Film „Alexis Sorbas“ weltberühmt?", o: ["Sirtaki", "Zoupa", "Kalamatianos", "Hasapiko"], a: 0}
     },
-
     "Irland": {
       1: [
         {q: "Welche Sprache ist neben Englisch verfassungsmäßig offizielle Amtssprache in Irland?", o: ["Walisisch", "Latein", "Gaeilge", "Schottisch-Gälisch"], a: 2},
-        {q: "Welche Sprache ist neben Englisch die zweite offizielle Amtssprache in Irland?", o: ["Walisisch", "Latein", "Gaeilge", "Schottisch"], a: 2}
+        {q: "Welche Sprache ist neben Englisch Amtssprache?", o: ["Walisisch", "Latein", "Gaeilge", "Schottisch"], a: 2}
       ],
       2: [
         {q: "Warum ist die irische Diaspora in vielen EU-Außenbeziehungen politisch relevant?", o: ["Aufgrund weltweiter Sportevents", "Wegen direkter Teilnahme an EU-Wahlen", "Durch den enormen wirtschaftlichen und politischen Einfluss in den USA", "Aufgrund der Förderung des Euros"], a: 2},
@@ -3639,31 +3638,26 @@ const pool = {
       ],
       3: {q: "Welcher weltberühmte irische Schriftsteller schrieb das bahnbrechende Werk 'Ulysses'?", o: ["James Joyce", "Oscar Wilde", "Samuel Beckett", "William Butler Yeats"], a: 0}
     },
-
     "Italien": {
       1: {q: "Welcher geniale italienische Renaissance-Künstler malte das Deckenfresko der Sixtinischen Kapelle in Rom?", o: ["Michelangelo Buonarroti", "Leonardo da Vinci", "Raffael", "Donatello"], a: 0},
       2: {q: "Wie heißt das weltberühmte antike Amphitheater im Herzen Roms, das als Wahrzeichen Italiens gilt?", o: ["Kolosseum", "Pantheon", "Forum Romanum", "Caracalla-Thermen"], a: 0},
       3: {q: "Welcher italienische Schriftsteller schrieb das weltberühmte mittelalterliche Epos „Die Göttliche Komödie“?", o: ["Dante Alighieri", "Francesco Petrarca", "Giovanni Boccaccio", "Umberto Eco"], a: 0}
     },
-
     "Kroatien": {
       1: {q: "Welches Kleidungsaccessoire für den Hals hat seinen historischen Ursprung in kroatischen Söldnern des 17. Jahrhunderts?", o: ["Krawatte", "Fliege", "Halstuch", "Schal"], a: 0},
       2: {q: "Welches antike, hervorragend erhaltene römische Amphitheater steht in der kroatischen Stadt Pula?", o: ["Arena von Pula", "Kolosseum Pula", "Kaiserforum", "Diokletianpalast"], a: 0},
       3: {q: "Welche kroatische Stadt an der Adria wird auch als „Perle der Adria“ bezeichnet?", o: ["Dubrovnik", "Split", "Zadar", "Rijeka"], a: 0}
     },
-
     "Lettland": {
       1: {q: "Welches traditionelle lettische Sommerwendfest wird im Juni mit Feuern und Bier gefeiert?", o: ["Jāņi", "Ziemassvētki", "Lieldienas", "Mārtiņi"], a: 0},
       2: {q: "Wie heißen die traditionellen lettischen Volkslieder, die zum UNESCO-Weltkulturerbe gehören?", o: ["Dainas", "Ligo-Lieder", "Kantele", "Runo"], a: 0},
       3: {q: "Welches weltberühmte Jugendstil-Viertel gehört zum UNESCO-Weltkulturerbe?", o: ["Altstadt von Riga", "Speicherstadt", "Art Nouveau District", "Kaiserburg"], a: 0}
     },
-
     "Litauen": {
       1: {q: "Welches christliche Heiligtum nahe Šiauliai besteht aus Hunderttausenden von Kreuzen?", o: ["Berg der Kreuze", "Tor der Morgenröte", "Kathedrale Vilnius", "Kloster Pažaislis"], a: 0},
       2: {q: "Welches fossile Harz der Ostsee wird in Litauen traditionell gesammelt und verarbeitet?", o: ["Bernstein", "Kopal", "Weihrauch", "Myrrhe"], a: 0},
       3: {q: "Welcher litauische Komponist und Maler des Symbolismus gilt als Nationalheld der Kunst?", o: ["M. K. Čiurlionis", "Jonas Mekas", "Mikalojus Radvila", "Vytautas Kasiulis"], a: 0}
     },
-
     "Luxemburg": {
       1: {q: "Welche Sprache ist gesetzlich keine der drei verankerten Verwaltungssprachen Luxemburgs?", o: ["Deutsch", "Französisch", "Luxemburgisch", "Englisch"], a: 3},
       2: [
@@ -3672,7 +3666,6 @@ const pool = {
       ],
       3: {q: "Welches luxemburgische Springprozessions-Fest gehört zum immateriellen Kulturerbe der UNESCO?", o: ["Springprozession von Echternach", "Schueberfouer", "Burgbrennen", "Oktav-Prozession"], a: 0}
     },
-
     "Malta": {
       1: [
         {q: "Welche sprachwissenschaftliche Besonderheit betrifft die Amtssprache Maltesisch in der EU?", o: ["Es ist eine romanische Sprache", "Es ist eine germanische Sprache", "Es ist die einzige semitische Sprache der EU", "Es ist eine slawische Sprache"], a: 2},
@@ -3684,61 +3677,51 @@ const pool = {
       ],
       3: {q: "Welches historische Kreuzsymbol des ritterlichen Johanniterordens ist auf Malta allgegenwärtig?", o: ["Malteserkreuz", "Johanniterkreuz", "Georgskreuz", "Jerusalemkreuz"], a: 0}
     },
-
     "Niederlande": {
       1: {q: "Welcher weltberühmte niederländische Maler der Barockzeit schuf das Meisterwerk „Die Nachtwache“?", o: ["Rembrandt van Rijn", "Vincent van Gogh", "Johannes Vermeer", "Hieronymus Bosch"], a: 0},
       2: {q: "Welcher niederländische Maler des Post-Impressionismus ist weltbekannt für seine ausdrucksstarken „Sonnenblumen“ und schnitt sich ein Ohr ab?", o: ["Vincent van Gogh", "Rembrandt", "Piet Mondrian", "Johannes Vermeer"], a: 0},
       3: {q: "Welcher niederländische Grafiker ist weltberühmt für seine Darstellungen unmöglicher Figuren und mathematischer Muster?", o: ["M. C. Escher", "Piet Mondrian", "Theo van Doesburg", "Gerrit Rietveld"], a: 0}
     },
-
     "Polen": {
       1: {q: "Welcher geniale polnisch-französische Komponist und Pianist der Romantik schrieb weltbekannte Nocturnes und Mazurken?", o: ["Frédéric Chopin", "Ignacy Jan Paderewski", "Stanisław Moniuszko", "Karol Szymanowski"], a: 0},
       2: {q: "Welcher polnische Astronom bewies im 16. Jahrhundert, dass sich die Erde um die Sonne dreht?", o: ["Nikolaus Kopernikus", "Johannes Kepler", "Galileo Galilei", "Maria Skłodowska-Curie"], a: 0},
       3: {q: "Welche polnisch-französische Physikerin entdeckte die Elemente Polonium und Radium und erhielt als einzige Frau zwei Nobelpreise?", o: ["Marie Curie", "Wisława Szymborska", "Olga Tokarczuk", "Irena Sendler"], a: 0}
     },
-
     "Portugal": {
       1: {q: "Wie heißt der traditionelle, melancholische portugiesische Musikstil, der meist von einer klassischen Gitarre begleitet wird?", o: ["Fado", "Flamenco", "Tango", "Samba"], a: 0},
       2: {q: "Welche bunt bemalten Fliesen prägen das Stadtbild und die Architektur in Portugal?", o: ["Azulejos", "Talavera", "Majolika", "Zellige"], a: 0},
       3: {q: "Welcher berühmte portugiesische Dichter des 16. Jahrhunderts schrieb das Nationalepos „Die Lusiaden“?", o: ["Luís de Camões", "Fernando Pessoa", "José Saramago", "Eça de Queirós"], a: 0}
     },
-
     "Rumänien": {
       1: {q: "Welches Schloss in Transsilvanien wird touristisch oft mit der Legende von Graf Dracula verbunden?", o: ["Schloss Bran", "Schloss Peleș", "Burg Hunedoara", "Schloss Făgăraș"], a: 0},
       2: {q: "Welcher berühmte rumänische Bildhauer der Moderne schuf die „Unendliche Säule“ in Târgu Jiu?", o: ["Constantin Brâncuși", "Dimitrie Paciurea", "Gheorghe Anghel", "Ion Irimescu"], a: 0},
       3: {q: "Welcher rumänisch-französische Dramatiker war ein Hauptvertreter des absurden Theaters („Die kahle Sängerin“)?", o: ["Eugène Ionesco", "Tristan Tzara", "Mircea Eliade", "Emil Cioran"], a: 0}
     },
-
     "Schweden": {
       1: {q: "Welche weltberühmte schwedische Popgruppe gewann 1974 mit dem Song „Waterloo“ den Eurovision Song Contest?", o: ["ABBA", "Roxette", "Ace of Base", "The Cardigans"], a: 0},
       2: {q: "Welche schwedische Kinderbuchautorin erschuf die weltbekannten Figuren Pippi Langstrumpf, Michel aus Lönneberga und Ronja Räubertochter?", o: ["Astrid Lindgren", "Selma Lagerlöf", "Tove Jansson", "Elsa Beskow"], a: 0},
       3: {q: "Wie heißt das schwedische Mittsommerfest, das zu den wichtigsten Festen des Landes gehört?", o: ["Midsommar", "Luciafest", "Valborg", "Kräftskiva"], a: 0}
     },
-
     "Slowakei": {
       1: {q: "Welches malerische Dorf in der Nordslowakei ist weltberühmt für seine verzierten Holzhäuser?", o: ["Čičmany", "Vlkolínec", "Bardejov", "Kežmarok"], a: 0},
       2: {q: "Welche Burgruine nahe Bratislava thront auf einem Felsen über der Mündung der March in die Donau?", o: ["Burg Devín", "Burg Zipser", "Burg Orava", "Burg Trenčín"], a: 0},
       3: {q: "Welcher slowakische Erfinder erfand den ersten praktischen Militär-Fallschirm 1913?", o: ["Štefan Banič", "Jozef Murgaš", "Aurel Stodola", "Milan Rastislav Štefánik"], a: 0}
     },
-
     "Slowenien": {
       1: {q: "Aus welcher weltberühmten slowenischen Zucht stammen die edlen weißen Barockpferde der Spanischen Hofreitschule?", o: ["Lipica", "Postojna", "Bled", "Maribor"], a: 0},
       2: {q: "Welcher weltbekannte slowenische Architekt prägte das Stadtbild von Ljubljana und Prag im 20. Jahrhundert?", o: ["Jože Plečnik", "Ivan Vurnik", "Max Fabiani", "Edvard Ravnikar"], a: 0},
       3: {q: "Welches ist das slowenische Nationalepos, geschrieben von France Prešeren?", o: ["Die Taufe an der Savica", "Kresnik", "Der goldene Stier", "Kralj Matjaž"], a: 0}
     },
-
     "Spanien": {
       1: {q: "Welcher spanische Maler der Moderne schuf das monumentale Antikriegsbild „Guernica“?", o: ["Pablo Picasso", "Salvador Dalí", "Joan Miró", "Francisco de Goya"], a: 0},
       2: {q: "Welcher spanische Architekt entwarf die weltberühmte, noch unvollendete Basilika Sagrada Família in Barcelona?", o: ["Antoni Gaudí", "Santiago Calatrava", "Rafael Moneo", "Cesar Pelli"], a: 0},
       3: {q: "Welcher spanische Schriftsteller schrieb den weltberühmten Jahrhundertroman „Don Quijote de la Mancha“?", o: ["Miguel de Cervantes", "Federico García Lorca", "Lope de Vega", "Gabriel García Márquez"], a: 0}
     },
-
     "Tschechien": {
       1: {q: "Welcher tschechische Schriftsteller schrieb weltberühmte Werke wie „Der Process“ und „Die Verwandlung“?", o: ["Franz Kafka", "Milan Kundera", "Jaroslav Hašek", "Karel Čapek"], a: 0},
       2: {q: "Welcher tschechische Komponist schuf die weltberühmte Sinfonie „Aus der Neuen Welt“ und den Zyklus „Mein Vaterland“?", o: ["Antonín Dvorák", "Bedrich Smetana", "Leo Janácek", "Gustav Mahler"], a: 0},
       3: {q: "Wie heißt die historische gotische Steinbrücke in Prag, die als Wahrzeichen des Landes gilt?", o: ["Karlsbrücke", "Moldaubrücke", "Wenzelsbrücke", "Nationalbrücke"], a: 0}
     },
-
     "Ungarn": {
       1: [
         {q: "Zu welcher europäischen Sprachfamilie gehört die ungarische Sprache?", o: ["Romanisch", "Slawisch", "Germanisch", "Finno-ugrisch"], a: 3},
@@ -3748,30 +3731,26 @@ const pool = {
         {q: "Welche weltberühmte Persönlichkeit steht symbolisch für Ungarns herausragenden Beitrag zur modernen Computerwissenschaft?", o: ["Albert Einstein", "Nikola Tesla", "John von Neumann", "Marie Curie"], a: 2},
         {q: "Welche Person steht für Ungarns Beitrag zur modernen Wissenschaft?", o: ["Albert Einstein", "Nikola Tesla", "John von Neumann", "Marie Curie"], a: 2}
       ],
-      3: {q: "Warum gilt der ungarische Volksaufstand von 1956 bis heute als historisches gesamteuropäisches Ereignis?", o: ["Er führte direkt zum EU-Beitritt Ungarns", "Er beendete unmittelbar den Kalten Krieg", "Er war ein wichtiges frühes Zeichen des Widerstands gegen die sowjetische Hegemonie in Europa", "Er vereinte Ost- und Westeuropa politisch"], a: 2}
+      3: {q: "Warum gilt der ungarische Volksaufstand von 1956 bis heute als historisches gesamteuropäisches Ereignis?", o: ["Er war ein Meilenstein des Widerstands gegen die sowjetische Vorherrschaft", "Er führte zur sofortigen wirtschaftlichen Annäherung an Westeuropa", "Er erzwang den sofortigen Abzug aller sowjetischen Streitkräfte", "Er begründete den ersten gemeinsamen Bündnisvertrag mit Österreich"], a: 0}
     },
-
     "Zypern": {
       1: {q: "Welche griechische Göttin der Liebe entstieg der Sage nach vor der Küste Zyperns dem Meeresschaum?", o: ["Aphrodite", "Athena", "Hera", "Artemis"], a: 0},
       2: {q: "Wie heißt das traditionelle zyprische Fladenbrot, das oft mit Halloumi gefüllt wird?", o: ["Pita", "Lavas", "Focaccia", "Naan"], a: 0},
       3: {q: "Welches zyprische Bergdorf ist weltberühmt für seine traditionelle Handarbeits-Spitzenkunst?", o: ["Lefkara", "Omodos", "Kakopetria", "Agros"], a: 0}
     },
-
     "Österreich": {
       1: {q: "Welches weltbekannte musikalische Wunderkind wurde in Salzburg geboren und komponierte die Oper „Die Zauberflöte“?", o: ["Wolfgang Amadeus Mozart", "Ludwig van Beethoven", "Franz Schubert", "Johann Strauss"], a: 0},
       2: {q: "Welcher österreichische Maler des Jugendstils schuf das weltberühmte, goldglänzende Gemälde „Der Kuss“?", o: ["Gustav Klimt", "Egon Schiele", "Oskar Kokoschka", "Hundertwasser"], a: 0},
       3: {q: "Welches prachtvolle Wiener Schloss diente den Habsburgern als Sommerresidenz und gehört zum UNESCO-Weltkulturerbe?", o: ["Schloss Schönbrunn", "Hofburg", "Schloss Belvedere", "Albertina"], a: 0}
     }
   },
-
-  // Category 5: Wirtschaft & Euro
+  // Category 5
   5: {
     "Belgien": {
       1: {q: "In welchem belgischen Industriezentrum befindet sich der zweitgrößte Seehafen der Europäischen Union?", o: ["Antwerpen", "Zeebrugge", "Gent", "Ostende"], a: 0},
       2: {q: "Welcher weltberühmte Brauereikonzern (der größte der Welt) hat seinen weltweiten Hauptsitz im belgischen Löwen?", o: ["Anheuser-Busch InBev", "Heineken", "Carlsberg", "Diageo"], a: 0},
       3: {q: "Für welche teure Handelsware ist das Antwerpener Hafenviertel seit Jahrhunderten das weltweit führende Zentrum?", o: ["Diamanten", "Rohöl", "Edelmetalle", "Kaffee"], a: 0}
     },
-
     "Bulgarien": {
       1: [
         {q: "Welche Aussage zur bulgarischen Landeswährung (Lew) ist im europäischen Kontext korrekt?", o: ["Der Lew schwankt völlig frei auf den Finanzmärkten", "Bulgarien nutzt im Alltag parallel den Euro", "Der Lew ist über ein Currency Board fest an den Euro gekoppelt", "Der Lew wurde 2020 vollständig abgeschafft"], a: 2},
@@ -3783,25 +3762,21 @@ const pool = {
       ],
       3: {q: "Welche Formulierung beschreibt Bulgariens aktuellen Status in der europäischen Integration am treffendsten?", o: ["Vollständig und vorbehaltlos integriert", "Stark isoliert und ohne Stimmrecht", "Formell integriert, steht jedoch politisch in Teilbereichen unter Beobachtung", "Lediglich über ein Assoziierungsabkommen wirtschaftlich eingebunden"], a: 2}
     },
-
     "Deutschland": {
       1: {q: "Welches deutsche Bundesland ist wirtschaftlich gemessen am BIP das stärkste des Landes?", o: ["Nordrhein-Westfalen", "Bayern", "Baden-Württemberg", "Hessen"], a: 0},
       2: {q: "Welches deutsche Softwareunternehmen ist der größte Softwarehersteller in Europa?", o: ["SAP", "Software AG", "Datev", "TeamViewer"], a: 0},
       3: {q: "Welches Abkommen von 1990 garantierte die vollständige wirtschaftliche Integration Ostdeutschlands in die EU?", o: ["Währungs-, Wirtschafts- und Sozialunion", "Zwei-plus-Vier-Vertrag", "Einigungsvertrag", "Schengen-Protokoll"], a: 0}
     },
-
     "Dänemark": {
       1: {q: "Welche dänische Containerreederei ist eines der größten Logistikunternehmen der Welt?", o: ["Mærsk", "Hapag-Lloyd", "MSC", "CMA CGM"], a: 0},
       2: {q: "Wie heißt die dänische Währung, die über den Wechselkursmechanismus II fest an den Euro gebunden ist?", o: ["Dänische Krone", "Dänischer Taler", "Euro", "Schwedische Krone"], a: 0},
       3: {q: "Welches dänische Pharmaunternehmen ist weltweit führend in der Insulintherapie und Diabetesbehandlung?", o: ["Novo Nordisk", "Lundbeck", "Leo Pharma", "Genmab"], a: 0}
     },
-
     "Estland": {
       1: {q: "Warum untersuchen EU-Gremien häufig Estlands staatliches Verwaltungssystem?", o: ["Wegen extrem niedriger Steuersätze", "Wegen seiner effizienten, fast vollständig digitalisierten Abläufe", "Aufgrund hoher Automatisierung in der Agrarwirtschaft", "Wegen der Konzentration von EU-Behörden im Land"], a: 1},
       2: {q: "Welches estnische Projekt wird auf EU-Ebene häufig als Vorbild für digitale Integration genannt?", o: ["Digitales Identitätssystem für Bürger und Unternehmen", "Ausbau militärischer Infrastruktur", "Agrarsubventionsmodell", "Hafenmodernisierung"], a: 0},
       3: {q: "In welchem wirtschaftspolitischen Innovationsfeld ist Estland in der EU besonders aktiv?", o: ["Reform und Digitalisierung staatlicher Verwaltungsprozesse", "Gemeinsame Fischereipolitik", "Kohleausstieg", "Subventionierung klassischer Industrien"], a: 0}
     },
-
     "Finnland": {
       1: [
         {q: "Welcher finnische Technologiekonzern dominierte um das Jahr 2000 den weltweiten Markt für Mobiltelefone?", o: ["Nokia", "Ericsson", "Linux", "Rovio"], a: 0},
@@ -3817,7 +3792,6 @@ const pool = {
         {q: "Warum war Finnland eines der ersten Länder, das den Euro eingeführt hat?", o: ["Wegen Drucks aus Deutschland", "Wegen stabiler Wirtschaft, politischer Unterstützung und Erfüllung der Konvergenzkriterien", "Wegen Wirtschaftskrise", "Wegen NATO-Beitritt"], a: 1}
       ]
     },
-
     "Frankreich": {
       1: {q: "Welche französische Ökonomin und Politikerin leitet als Chefin die Europäische Zentralbank (EZB)?", o: ["Ursula von der Leyen", "Christine Lagarde", "Élisabeth Borne", "Marine Le Pen"], a: 1},
       2: [
@@ -3826,7 +3800,6 @@ const pool = {
       ],
       3: {q: "Warum hat Frankreich seit dem Vertrag von Lissabon besonders großen Einfluss bei Mehrheitsabstimmungen im Rat der EU?", o: ["Weil dort die Stimmen rein nach der Wirtschaftskraft verteilt sind", "Weil nach Bevölkerungszahl gewichtet abgestimmt wird und Frankreich sehr einwohnerreich ist", "Weil Frankreich als Atommacht ein permanentes Veto besitzt", "Weil Frankreich den größten Netto-Beitrag in die EU-Kasse zahlt"], a: 1}
     },
-
     "Griechenland": {
       1: [
         {q: "In welchem Jahr trat Griechenland der Euro-Zone bei (Einführung als Buchwährung)?", o: ["1999", "2001", "2002", "2004"], a: 1},
@@ -3839,19 +3812,17 @@ const pool = {
         {q: "Was bedeutete das Wort „Grexit“, das während der Euro-Krise in der EU ständig diskutiert wurde?", o: ["Ein spezielles Visum für griechische Arbeiter", "Der mögliche Austritt Griechenlands aus der Euro-Zone", "Ein europäisches Förderprogramm für griechisches Olivenöl", "Eine neue digitale Steuerkarte für griechische Bürger"], a: 1}
       ]
     },
-
     "Irland": {
       1: {q: "Welcher Sektor zieht durch niedrige Steuersätze die europäischen Hauptsitze globaler Tech-Giganten nach Irland?", o: ["Informationstechnologie", "Schwerindustrie", "Landwirtschaft", "Tourismus"], a: 0},
       2: [
         {q: "In welchem Finanzbezirk in Dublin haben sich zahlreiche multinationale Banken angesiedelt?", o: ["IFSC", "Silicon Docks", "Temple Bar", "Sandyford"], a: 0},
-        {q: "Warum gilt Irland als wirtschaftliche EU-Erfolgsgeschichte?", o: ["Große Rohstoffvorkommen", "Starker Tourismus", "EU-Förderungen & ausländische Direktinvestitionen", "Landwirtschaft"], a: 2}
+        {q: "Warum gilt Irland als wirtschaftliche EU-Erfolgsgeschichte?", o: ["EU-Strukturfonds und gezielte ausländische Direktinvestitionen", "Große Vorkommen an fossilen Rohstoffen und Metallen", "Ein stetig wachsender Ganzjahrestourismus an den Küsten", "Ein traditionell dominierender Agrarsektor mit hoher Wertschöpfung"], a: 0}
       ],
       3: [
         {q: "Welcher irische Flughafen eröffnete 1947 den ersten zollfreien Laden (Duty-Free-Shop) der Welt?", o: ["Shannon Airport", "Dublin Airport", "Cork Airport", "Kerry Airport"], a: 0},
-        {q: "Warum ist Irland besonders attraktiv für Tech-Konzerne innerhalb der EU?", o: ["Geringe Löhne", "Nähe zu den USA", "Kombination aus Steuersystem & Binnenmarktzugang", "Lockere Arbeitsgesetze"], a: 2}
+        {q: "Warum ist Irland besonders attraktiv für Tech-Konzerne innerhalb der EU?", o: ["Die Kombination aus Steuervorteilen und Binnenmarktzugang", "Sehr geringes Lohnniveau im IT-Sektor", "Die geografische Nähe zu den US-Ostküsten", "Ein fast vollständiges Fehlen von Kündigungsschutzgesetzen"], a: 0}
       ]
     },
-
     "Italien": {
       1: [
         {q: "Welche Währung wird in Italien offiziell verwendet?", o: ["Italienische Lira", "US-Dollar", "Euro", "Britisches Pfund"], a: 2},
@@ -3867,13 +3838,11 @@ const pool = {
         {q: "Warum ist Italiens Staatsverschuldung für die EU wichtig?", o: ["Sie betrifft nur Italien", "Sie stärkt den Euro", "Sie kann die Eurozone destabilisieren", "Sie hat keinen Einfluss"], a: 2}
       ]
     },
-
     "Kroatien": {
       1: {q: "Welcher Wirtschaftszweig trägt über 20% zum Bruttoinlandsprodukt Kroatiens bei?", o: ["Tourismus", "Automobilindustrie", "Landwirtschaft", "Finanzsektor"], a: 0},
       2: {q: "Welcher innovative kroatische Elektro-Supersportwagenhersteller entwickelt auch Antriebe für Porsche?", o: ["Rimac Automobili", "Croatia Cars", "Tesla EU", "Dartz"], a: 0},
       3: {q: "Welche kroatische Werft in Pula gehört zu den traditionsreichsten Schiffbauunternehmen der Adria?", o: ["Uljanik", "3. Maj", "Split", "Viktor Lenac"], a: 0}
     },
-
     "Lettland": {
       1: [
         {q: "Welche wirtschaftliche Funktion übernimmt Lettland primär innerhalb des EU-Binnenmarktes?", o: ["Fokus auf rein spekulativen Finanzdienstleistungen", "Effiziente Verbindung wichtiger Warenströme zwischen den Regionen", "Führende Exportnation von fossiler Energie", "Starke Konzentration auf klassische Schwerindustrie"], a: 1},
@@ -3886,10 +3855,9 @@ const pool = {
       3: [
         {q: "Welche Art von EU-Projekten nutzt Lettlands Verkehrsnetzwerk und Infrastruktur besonders intensiv?", o: ["Internationale Forschungsprogramme", "Transeuropäische Verkehrs- und Handelsinitiativen", "Kulturaustauschprogramme", "Agrarsubventionsprojekte"], a: 1},
         {q: "Welche Art von EU-Projekten nutzt Lettlands Infrastruktur besonders intensiv?", o: ["Forschungsprogramme", "Verkehrs- und Handelsinitiativen", "Kulturprogramme", "Agrarförderprojekte"], a: 1},
-        {q: "Welche langfristige Rolle spielt Lettland für die Funktionsfähigkeit des EU-Binnenmarktes im Ostseeraum?", o: ["Als Standort zentraler EU-Behörden", "Als stabile Verbindung für Waren- und Lieferketten zwischen EU-Regionen", "Als größter Produktionsstandort", "Als führender Finanzplatz"], a: 1}
+        {q: "Welche langfristige Rolle spielt Lettland für die Funktionsfähigkeit des EU-Binnenmarktes im Ostseeraum?", o: ["Als wichtige Verbindung für den Warenverkehr zwischen den Ostsee-Ländern", "Als primärer Standort für alle behördlichen EU-Stellen im Baltikum", "Als der mit Abstand größte Produzent von Industriewaren in Nordeuropa", "Als führender Akteur im internationalen Devisenhandel dieser Region"], a: 0}
       ]
     },
-
     "Litauen": {
       1: {q: "Welche litauische Plattform für Second-Hand-Mode wurde zu einem bekannten europäischen Einhorn?", o: ["Vinted", "Zalando", "About You", "Wallapop"], a: 0},
       2: {q: "Für welches Ressort war der litauische Kommissar Virginijus Sinkevičius in der EU-Kommission zuständig?", o: ["Wirtschaft", "Verkehr", "Umwelt, Meere und Fischerei", "Handel"], a: 2},
@@ -3898,7 +3866,6 @@ const pool = {
         {q: "Welche regionale EU-Zusammenarbeit ist für Litauen besonders wichtig?", o: ["Mittelmeerraum", "Alpenraum", "Ostseeraum", "Balkan"], a: 2}
       ]
     },
-
     "Luxemburg": {
       1: [
         {q: "Welcher Wirtschaftssektor ist heute der mit Abstand wichtigste in Luxemburg?", o: ["Landwirtschaft", "Schwerindustrie", "Tourismus", "Finanzdienstleistungen"], a: 3},
@@ -3910,34 +3877,29 @@ const pool = {
         {q: "Luxemburg ist einer der wenigen EU-Staaten, die ...", o: ["Nettoempfänger ohne Agrarsektor sind", "Nettozahler mit extrem geringer Bevölkerungszahl sind", "keine Regionen besitzen", "keine Arbeitsmigration haben"], a: 1}
       ]
     },
-
     "Malta": {
       1: {q: "Welcher Dienstleistungssektor ist aufgrund maltesischer Sonderregelungen wirtschaftlich extrem stark vertreten?", o: ["iGaming & Online-Glücksspiel", "Automobilbau", "Chemieindustrie", "Schwerindustrie"], a: 0},
       2: {q: "In welchem Bereich der Finanzdienstleistungen geriet Malta wiederholt unter erheblichen EU-Druck?", o: ["Bildungsausgaben", "Umweltsteuern", "Steuer- und Finanzaufsicht", "Verkehrssubventionen"], a: 2},
       3: [
-        {q: "Welche strukturelle Eigenschaft unterscheidet Malta wirtschaftlich von fast allen anderen EU-Staaten?", o: ["Keine eigenständigen Regionen", "Vollständiges Fehlen von Industrie", "Extrem kleine Fläche bei voller EU-Pflichtenübernahme", "Fehlen jeglicher Meeresgrenzen"], a: 2},
-        {q: "Welche strukturelle Eigenschaft unterscheidet Malta von fast allen anderen EU-Staaten?", o: ["Keine Regionen", "Keine Industrie", "Extrem kleine Fläche bei voller EU-Pflichtenübernahme", "Keine Landgrenzen"], a: 2}
+        {q: "Welche strukturelle Eigenschaft unterscheidet Malta wirtschaftlich von fast allen anderen EU-Staaten?", o: ["Die extrem kleine Staatsfläche bei voller EU-Pflichtenübernahme", "Das Fehlen jeglicher eigenständiger Verwaltungsregionen im Land", "Das fast vollständige Nichtvorhandensein von Industriezweigen", "Das vollständige Fehlen von physischen Meeresgrenzen zum Festland"], a: 0},
+        {q: "Welche strukturelle Eigenschaft unterscheidet Malta von fast allen anderen EU-Staaten?", o: ["Eine winzige Staatsfläche bei vollen Pflichten", "Das Fehlen eigenständiger Regionen", "Ein völliges Fehlen von Industriegütern", "Das Fehlen jeglicher direkter Landgrenzen"], a: 0}
       ]
     },
-
     "Niederlande": {
       1: {q: "Welches niederländische High-Tech-Unternehmen stellt die weltweit wichtigsten Lithografiesysteme für die Chipindustrie her?", o: ["ASML", "NXP Semiconductors", "Philips", "ASMI"], a: 0},
       2: {q: "In welchem Jahr wurde die niederländische Landeswährung Gulden offiziell durch den Euro abgelöst?", o: ["2002", "1999", "2004", "2000"], a: 0},
       3: {q: "Welches niederländisch-britische Konsumgüterunternehmen stellte Marken wie Dove, Knorr und Langnese her?", o: ["Unilever", "Procter & Gamble", "Nestlé", "Reckitt"], a: 0}
     },
-
     "Polen": {
       1: {q: "Wie heißt die offizielle Landeswährung Polens, das dem Euro-Währungsraum bisher nicht beigetreten ist?", o: ["Polnischer Zloty", "Polnische Krone", "Polnischer Lew", "Euro"], a: 0},
       2: {q: "Welcher staatliche polnische Mineralöl- und Energiekonzern ist das umsatzstärkste Unternehmen Zentraleuropas?", o: ["Orlen", "PGNiG", "Lotos", "PGE"], a: 0},
       3: {q: "Welche polnische Software-Schmiede entwickelte das weltweit erfolgreiche Rollenspiel „The Witcher“?", o: ["CD Projekt Red", "Techland", "People Can Fly", "11 bit studios"], a: 0}
     },
-
     "Portugal": {
       1: {q: "Portugal ist der weltweit größte Produzent und Exporteur welches natürlichen Flaschenverschluss-Materials?", o: ["Kork", "Glas", "Kunststoff", "Aluminium"], a: 0},
       2: {q: "Welches portugiesische Energieunternehmen ist führend im Bereich der erneuerbaren Energien (Wind und Solar)?", o: ["EDP", "Galp Energia", "REN", "Efacec"], a: 0},
       3: {q: "In welchem Jahr führte Portugal den Euro als Buchungswährung ein?", o: ["1999", "2002", "2004", "2000"], a: 0}
     },
-
     "Rumänien": {
       1: [
         {q: "Welcher rumänische Automobilhersteller ist eine erfolgreiche Tochtergesellschaft von Renault?", o: ["Dacia", "Oltcit", "ARO", "Roman"], a: 0},
@@ -3949,7 +3911,6 @@ const pool = {
         {q: "In welchem Bereich nutzt Rumänien besonders intensiv EU-Strukturfonds?", o: ["Raumfahrt", "Verteidigung", "Infrastruktur und Regionalentwicklung", "Kulturförderung"], a: 2}
       ]
     },
-
     "Schweden": {
       1: [
         {q: "Wie heißt die offizielle Währung Schwedens?", o: ["Euro", "Dänische Krone", "Schwedische Krone", "Norwegische Krone"], a: 2},
@@ -3966,19 +3927,16 @@ const pool = {
         {q: "Warum kann Schweden den Euro trotz Verpflichtung weiterhin vermeiden?", o: ["Wegen eines Sondervertrags", "Weil es kein EU-Mitglied ist", "Weil es die notwendigen Kriterien bewusst nicht erfüllt", "Weil die EU es verbietet"], a: 2}
       ]
     },
-
     "Slowakei": {
       1: {q: "Welcher Industriezweig (gemessen an der Produktion pro Kopf die höchste weltweit) dominiert die slowakische Wirtschaft?", o: ["Automobilindustrie", "Elektronikindustrie", "Textilindustrie", "Agrarwirtschaft"], a: 0},
       2: {q: "In welchem Jahr führte die Slowakei den Euro ein?", o: ["2009", "2004", "2007", "2011"], a: 0},
       3: {q: "Welche slowakische IT-Sicherheitsfirma entwickelte die weltweit bekannte Antivirensoftware NOD32?", o: ["ESET", "Avast", "AVG", "Kaspersky"], a: 0}
     },
-
     "Slowenien": {
       1: {q: "Welcher slowenische Haushaltsgerätehersteller gehört zu den führenden Herstellern in Europa?", o: ["Gorenje", "Beko", "Bosch", "Miele"], a: 0},
       2: {q: "Wann führte Slowenien als erstes der neuen Beitrittsländer von 2004 den Euro ein?", o: ["2007", "2004", "2009", "2011"], a: 0},
       3: {q: "Welcher slowenische Pharmakonzern gehört zu den weltweit führenden Generikaherstellern?", o: ["Krka", "Lek", "Pliva", "Zentiva"], a: 0}
     },
-
     "Spanien": {
       1: [
         {q: "Welche offizielle Währung hat Spanien?", o: ["Peseta", "US-Dollar", "Euro", "Schweizer Franken"], a: 2},
@@ -3994,35 +3952,31 @@ const pool = {
         {q: "Welches Problem hat Spanien im EU-Vergleich stärker?", o: ["Zu viele Arbeitsplätze", "Hohe Arbeitslosigkeit", "Zu viel Industrie", "Niedrige Bevölkerung"], a: 1}
       ]
     },
-
     "Tschechien": {
       1: {q: "Welcher tschechische Automobilhersteller gehört heute zum Volkswagen-Konzern und ist das größte Unternehmen des Landes?", o: ["Škoda Auto", "Tatra", "Praga", "Jawa"], a: 0},
       2: {q: "Wie heißt die Landeswährung Tschechiens?", o: ["Tschechische Krone", "Tschechischer Zloty", "Euro", "Tschechischer Taler"], a: 0},
       3: {q: "Welche weltberühmte tschechische Brauerei in Pilsen erfand die Brauweise des modernen Pilsner Biers?", o: ["Plzenský Prazdroj", "Budweiser Budvar", "Staropramen", "Krušovice"], a: 0}
     },
-
     "Ungarn": {
       1: {q: "Welche ungarische Großbank ist einer der größten eigenständigen Finanzdienstleister in Mittel- und Osteuropa?", o: ["OTP Bank", "MKB Bank", "Erste Bank", "K&H Bank"], a: 0},
       2: [
-        {q: "Warum ist die ungarische Hauptstadt Budapest wirtschaftlich und logistisch für den EU-Binnenmarkt von Bedeutung?", o: ["Sitz der EZB", "Größter Binnenhafen Europas", "Zentraler Verkehrs- und Logistikknotenpunkt in Südosteuropa", "Größtes Finanzzentrum"], a: 2},
+        {q: "Warum ist die ungarische Hauptstadt Budapest wirtschaftlich und logistisch für den EU-Binnenmarkt von Bedeutung?", o: ["Als zentraler Verkehrs- und Logistikknotenpunkt in Südosteuropa", "Als Sitz der Europäischen Zentralbank für Osteuropa", "Als größter Binnenhafen für Containerschifffahrt in Europa", "Als wichtigstes und am schnellsten wachsendes Finanzzentrum"], a: 0},
         {q: "Warum ist Budapest für die EU wirtschaftlich bedeutend?", o: ["Sitz der EU-Kommission", "Größter Hafen Europas", "Zentraler Verkehrs- und Logistikknoten", "Finanzzentrum wie Frankfurt"], a: 2}
       ],
       3: {q: "In welchem Jahr trat Ungarn dem Wechselkursmechanismus II bei, um den Euro vorzubereiten?", o: ["Bisher nicht beigetreten", "2004", "2008", "2012"], a: 0}
     },
-
     "Zypern": {
       1: {q: "Seit welchem Jahr ist Zypern Mitglied der EU?", o: ["1995", "2004", "2007", "2013"], a: 1},
       2: {q: "Welche Währung löste am 1. Januar 2008 das Zypern-Pfund ab?", o: ["Euro", "Türkische Lira", "Britisches Pfund", "Zypern-Drachme"], a: 0},
       3: {q: "Warum gilt Zyperns Beitritt im EU-Erweiterungsrecht als rechtlicher Präzedenzfall?", o: ["Erstes Land ohne eigenes Staatsgebiet", "Erste reine Inselwirtschaft der EU", "Beitritt ohne vollständige Anwendung des EU-Besitzstands im Norden", "Einführung des Euro ohne Bedingungen"], a: 2}
     },
-
     "Österreich": {
       1: {q: "Welches österreichische Unternehmen ist weltbekannt für geschliffenes Kristallglas und Schmuck?", o: ["Swarovski", "Red Bull", "Voestalpine", "OMV"], a: 0},
       2: {q: "Welcher österreichische Getränkekonzern vertreibt den weltweit bekanntesten Energy-Drink?", o: ["Red Bull", "Almdudler", "Rauch", "Pfanner"], a: 0},
       3: {q: "Welcher österreichische Stahl- und Technologiekonzern hat seinen Hauptsitz in Linz?", o: ["Voestalpine", "Böhler-Uddeholm", "Andritz", "Strabag"], a: 0}
     }
   }
-};
+};;;;;;;;;;
 
 
 function toggleTheme() { 
@@ -4308,6 +4262,9 @@ function cancelQuestion() {
   stopTimer();
   sounds.playClick();
   document.getElementById('quiz-dialog').close();
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.cancel();
+  }
 }
 
 function startTimer() {
@@ -4341,6 +4298,9 @@ function startTimer() {
       bar.classList.add('timer-glow-warning');
     }
     if (timeLeft <= 0) {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
       stopTimer();
       sounds.playBuzzer();
       document.getElementById('joker-arsenal').style.display = 'none';
@@ -4358,6 +4318,7 @@ function startTimer() {
       
       countries[currentCIdx].p[currentLvl] = 1;
       countries[currentCIdx].correct[currentLvl] = 0;
+      if (typeof statsCategoryAnswers !== 'undefined' && statsCategoryAnswers[activeCategory]) statsCategoryAnswers[activeCategory].w++;
 
       const infoEl = document.getElementById('txt-turn-info');
       if (riskActive) {
@@ -4622,6 +4583,7 @@ function setupQuestionUI(qData, lvl) {
   ).join('');
 
   startTimer();
+  speakCurrentQuestion();
 }
 
 function use5050() {
@@ -4738,6 +4700,9 @@ function showCampaignExplanation() {
 }
 
 function check(idx) {
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.cancel();
+  }
   const opts = document.querySelectorAll('#options-container .option');
   
   // Collapse class opinion chart automatically when option is selected
@@ -4751,6 +4716,7 @@ function check(idx) {
     opts.forEach(o => o.style.pointerEvents = 'none');
     sounds.playSuccess();
     opts[idx].classList.add('correct');
+    if (typeof statsCategoryAnswers !== 'undefined' && statsCategoryAnswers[activeCategory]) statsCategoryAnswers[activeCategory].c++;
     
     // Mastery checks
     const wasMasteredBefore = countries[currentCIdx].correct[1] && countries[currentCIdx].correct[2] && countries[currentCIdx].correct[3];
@@ -4799,6 +4765,7 @@ function check(idx) {
       infoEl.innerText = '❌ Falsch! Retter-Joker aktiv – rate nochmal!';
       infoEl.style.color = 'var(--error)';
     } else {
+      if (typeof statsCategoryAnswers !== 'undefined' && statsCategoryAnswers[activeCategory]) statsCategoryAnswers[activeCategory].w++;
       stopTimer();
       opts.forEach(o => o.style.pointerEvents = 'none');
       sounds.playError();
@@ -4948,6 +4915,7 @@ function endGame() {
   document.getElementById('round-counter').style.display = 'none';
   document.getElementById('category-indicator').style.display = 'none';
   document.getElementById('winner-screen').style.display = 'flex';
+  if (typeof renderCategoryStats === 'function') renderCategoryStats();
 
   const sorted = [...teams].sort((a, b) => b.score - a.score);
   const podium = document.getElementById('podium-area');
@@ -5146,6 +5114,7 @@ let playedCategories = new Set();
 
 function initSPMultiplayerSetup() {
   sounds.init();
+  if (typeof playedSessionQuestions !== 'undefined') playedSessionQuestions.clear();
   const inputs = document.querySelectorAll('.team-name-input');
   const err = document.getElementById('setup-err');
   err.style.display = 'none';
@@ -5332,7 +5301,27 @@ function prepareRapidFireQuestions(catNum) {
       }
     }
   });
-  return list.sort(() => Math.random() - 0.5);
+  
+  let available = list;
+  if (typeof playedSessionQuestions !== 'undefined') {
+    available = list.filter(q => !playedSessionQuestions.has(q.q));
+    if (available.length === 0) available = list;
+  }
+  
+  // Balanced sequence: interleave Level 1, 2, 3, 1, 2, 3...
+  let lvl1 = available.filter(q => q.lvl === 1).sort(() => Math.random() - 0.5);
+  let lvl2 = available.filter(q => q.lvl === 2).sort(() => Math.random() - 0.5);
+  let lvl3 = available.filter(q => q.lvl === 3).sort(() => Math.random() - 0.5);
+  
+  let interleaved = [];
+  let maxLen = Math.max(lvl1.length, lvl2.length, lvl3.length);
+  for (let i = 0; i < maxLen; i++) {
+    if (i < lvl1.length) interleaved.push(lvl1[i]);
+    if (i < lvl2.length) interleaved.push(lvl2[i]);
+    if (i < lvl3.length) interleaved.push(lvl3[i]);
+  }
+  
+  return interleaved;
 }
 
 function generateVisualQuestionsList() {
@@ -5423,6 +5412,7 @@ function generateFlagQuestion() {
 function initSinglePlayerGame() {
   sounds.init();
   sounds.setMusicState('question');
+  if (typeof playedSessionQuestions !== 'undefined') playedSessionQuestions.clear();
   
   singlePlayerScore = 0;
   rapidFireIndex = 0;
@@ -5513,6 +5503,7 @@ function openRapidFireQuestion() {
   }
   
   const rawQ = rapidFireQuestions[rapidFireIndex];
+  if (typeof playedSessionQuestions !== 'undefined') playedSessionQuestions.add(rawQ.q);
   currentQuestionData = shuffleQuestionOptions(rawQ);
   const qData = currentQuestionData;
   correctAnswer = qData.a;
@@ -5584,6 +5575,7 @@ function openRapidFireQuestion() {
   }
   jswap.style.display = allowSwap ? 'inline-flex' : 'none';
   jswap.innerText = `Frage tauschen (${team.jokers.swap}x)`;
+  speakCurrentQuestion();
 }
 
 function useSwapJoker() {
@@ -5620,6 +5612,7 @@ function generateVisualQuestion() {
 function initFlagsGame() {
   sounds.init();
   sounds.setMusicState('question');
+  if (typeof playedSessionQuestions !== 'undefined') playedSessionQuestions.clear();
   
   singlePlayerScore = 0;
   flagQuestionIndex = 0;
@@ -5688,9 +5681,17 @@ function openFlagsQuestion() {
        <span>${opt}</span>
      </div>`
   ).join('');
+  speakCurrentQuestion();
 }
 
 function checkRapidFire(idx) {
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.cancel();
+  }
+  if (gameMode === 'timeattack' && timeAttackTimerInterval) {
+    clearInterval(timeAttackTimerInterval);
+    timeAttackTimerInterval = null;
+  }
   const opts = document.querySelectorAll('#options-container .option');
   document.getElementById('joker-arsenal').style.display = 'none';
   document.getElementById('revive-btn').style.display = 'none';
@@ -5765,8 +5766,8 @@ function checkRapidFire(idx) {
           currentStreak = prevStreak;
           reviveBtn.style.display = 'none';
           
-          nextBtn.innerText = "Nächste Frage";
-          nextBtn.onclick = advanceRapidFireQuestion;
+          // Go straight to the next question
+          advanceRapidFireQuestion();
         };
       }
       nextBtn.innerText = "Runde beenden / Auswerten";
@@ -5782,6 +5783,9 @@ function checkRapidFire(idx) {
 }
 
 function advanceRapidFireQuestion() {
+  if (gameMode === 'timeattack') {
+    startTimeAttackTimer();
+  }
   if (gameMode === 'flags') {
     flagQuestionIndex++;
     openFlagsQuestion();
@@ -5804,6 +5808,7 @@ function endSinglePlayerGame() {
   document.getElementById('game-dashboard').style.display = 'none';
   document.getElementById('end-game-btn').style.display = 'none';
   document.getElementById('winner-screen').style.display = 'flex';
+  if (typeof renderCategoryStats === 'function') renderCategoryStats();
   
   let modeText = "";
   if (gameMode === 'timeattack') modeText = "⏱️ Gegen die Zeit";
@@ -5813,74 +5818,88 @@ function endSinglePlayerGame() {
   if (teams.length > 1) {
     document.getElementById('win-heading').innerText = "TURNIER BEENDET";
     document.getElementById('win-subheading').innerHTML = `Modus: <strong>${modeText}</strong><br>Hier sind die Platzierungen:`;
-    
-    const sorted = [...teams].sort((a, b) => b.score - a.score);
-    const podium = document.getElementById('podium-area');
-    const otherRanks = document.getElementById('other-ranks');
-    const maxScore = sorted[0].score;
-    const winners = sorted.filter(t => t.score === maxScore);
-    
-    podium.style.display = 'flex';
+  } else {
+    document.getElementById('win-heading').innerText = "SPIEL BEENDET";
+    document.getElementById('win-subheading').innerHTML = `Modus: <strong>${modeText}</strong>`;
+  }
+  
+  const sorted = [...teams];
+  if (teams.length === 1) {
+    sorted[0].score = singlePlayerScore;
+  }
+  sorted.sort((a, b) => b.score - a.score);
+  
+  const podium = document.getElementById('podium-area');
+  const otherRanks = document.getElementById('other-ranks');
+  const maxScore = sorted[0].score;
+  const winners = sorted.filter(t => t.score === maxScore);
+  
+  podium.style.display = 'flex';
+  if (teams.length > 1) {
     otherRanks.style.display = 'flex';
-    
-    let spStats = document.getElementById('single-player-stats-container');
-    if (spStats) spStats.style.display = 'none';
-    
-    if (winners.length > 1) {
-      document.getElementById('win-heading').innerText = "UNENTSCHIEDEN!";
-      const winnerNames = winners.map(w => w.name).join(" & ");
-      document.getElementById('win-subheading').innerHTML = `Hervorragende Leistung! Die gemeinsamen Champions sind: <strong>${winnerNames}</strong><br>Modus: <strong>${modeText}</strong>`;
-      podium.innerHTML = `
-        <div class="podium-step p-2">
-          <div class="podium-name" style="width:180px;">Geteilter Sieg</div>
-          <div class="step-bar">🤝</div>
-          <div style="margin-top:10px;font-weight:bold;font-size:1.2rem;font-family:'Space Grotesk',sans-serif;">TIE</div>
+  } else {
+    otherRanks.style.display = 'none';
+  }
+  
+  let spStats = document.getElementById('single-player-stats-container');
+  if (spStats) {
+    spStats.style.display = 'none';
+  }
+  
+  if (winners.length > 1) {
+    document.getElementById('win-heading').innerText = "UNENTSCHIEDEN!";
+    const winnerNames = winners.map(w => w.name).join(" & ");
+    document.getElementById('win-subheading').innerHTML = `Hervorragende Leistung! Die gemeinsamen Champions sind: <strong>${winnerNames}</strong><br>Modus: <strong>${modeText}</strong>`;
+    podium.innerHTML = `
+      <div class="podium-step p-2">
+        <div class="podium-name" style="width:180px;">Geteilter Sieg</div>
+        <div class="step-bar">🤝</div>
+        <div style="margin-top:10px;font-weight:bold;font-size:1.2rem;font-family:'Space Grotesk',sans-serif;">TIE</div>
+      </div>
+      <div class="podium-step p-1">
+        <div class="crown-icon">👑</div>
+        <div class="podium-name" style="width:240px;font-size:1.15rem;font-weight:800;color:var(--gold);white-space:normal;overflow:visible;">
+          ${winners.map(w => `<div>🏆 ${w.name}</div>`).join('')}
         </div>
-        <div class="podium-step p-1">
-          <div class="crown-icon">👑</div>
-          <div class="podium-name" style="width:240px;font-size:1.15rem;font-weight:800;color:var(--gold);white-space:normal;overflow:visible;">
-            ${winners.map(w => `<div>🏆 ${w.name}</div>`).join('')}
-          </div>
-          <div class="step-bar">1</div>
-          <div style="margin-top:10px;font-weight:bold;font-size:1.2rem;font-family:'Space Grotesk',sans-serif;">${Number(maxScore.toFixed(1))} PTS</div>
-        </div>`;
-      setTimeout(() => document.querySelectorAll('.podium-step').forEach(el => el.classList.add('animate')), 100);
-      otherRanks.innerHTML = sorted.filter(t => t.score < maxScore).map((team, idx) => `
+        <div class="step-bar">1</div>
+        <div style="margin-top:10px;font-weight:bold;font-size:1.2rem;font-family:'Space Grotesk',sans-serif;">${Number(maxScore.toFixed(1))} PTS</div>
+      </div>`;
+    setTimeout(() => document.querySelectorAll('.podium-step').forEach(el => el.classList.add('animate')), 100);
+    otherRanks.innerHTML = sorted.filter(t => t.score < maxScore).map((team, idx) => `
+      <div class="rank-row">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <span style="font-weight:800;opacity:0.6;">#${winners.length + idx + 1}</span>
+          <span style="font-weight:600;">${team.name}</span>
+        </div>
+        <span style="font-weight:700;color:var(--accent);font-family:'Space Grotesk',sans-serif;">${Number(team.score.toFixed(1))} PTS</span>
+      </div>`).join('');
+  } else {
+    const order = [1, 0, 2];
+    podium.innerHTML = order.map(pos => {
+      if (!sorted[pos]) return '';
+      const cls = pos === 0 ? 'p-1' : (pos === 1 ? 'p-2' : 'p-3');
+      const crown = pos === 0 ? '<div class="crown-icon">👑</div>' : '';
+      return `<div class="podium-step ${cls}">
+        ${crown}
+        <div class="podium-name" title="${sorted[pos].name}">${sorted[pos].name}</div>
+        <div class="step-bar">${pos + 1}</div>
+        <div style="margin-top:10px;font-weight:bold;font-size:1.1rem;font-family:'Space Grotesk',sans-serif;">${Number(sorted[pos].score.toFixed(1))} PTS</div>
+      </div>`;
+    }).join('');
+    setTimeout(() => document.querySelectorAll('.podium-step').forEach(el => el.classList.add('animate')), 100);
+    if (sorted.length > 3) {
+      otherRanks.innerHTML = sorted.slice(3).map((t, i) => `
         <div class="rank-row">
           <div style="display:flex;align-items:center;gap:10px;">
-            <span style="font-weight:800;opacity:0.6;">#${winners.length + idx + 1}</span>
-            <span style="font-weight:600;">${team.name}</span>
+            <span style="font-weight:800;opacity:0.6;">#${i+4}</span>
+            <span style="font-weight:600;">${t.name}</span>
           </div>
-          <span style="font-weight:700;color:var(--accent);font-family:'Space Grotesk',sans-serif;">${Number(team.score.toFixed(1))} PTS</span>
+          <span style="font-weight:700;color:var(--accent);font-family:'Space Grotesk',sans-serif;">${Number(t.score.toFixed(1))} PTS</span>
         </div>`).join('');
-    } else {
-      document.getElementById('win-heading').innerText = "SPIEL BEENDET";
-      document.getElementById('win-subheading').innerHTML = `Der Gewinner steht fest: Glückwunsch an <strong>${sorted[0].name}</strong>!<br>Modus: <strong>${modeText}</strong>`;
-      const order = [1, 0, 2];
-      podium.innerHTML = order.map(pos => {
-        if (!sorted[pos]) return '';
-        const cls = pos === 0 ? 'p-1' : (pos === 1 ? 'p-2' : 'p-3');
-        const crown = pos === 0 ? '<div class="crown-icon">👑</div>' : '';
-        return `<div class="podium-step ${cls}">
-          ${crown}
-          <div class="podium-name" title="${sorted[pos].name}">${sorted[pos].name}</div>
-          <div class="step-bar">${pos + 1}</div>
-          <div style="margin-top:10px;font-weight:bold;font-size:1.1rem;font-family:'Space Grotesk',sans-serif;">${Number(sorted[pos].score.toFixed(1))} PTS</div>
-        </div>`;
-      }).join('');
-      setTimeout(() => document.querySelectorAll('.podium-step').forEach(el => el.classList.add('animate')), 100);
-      if (sorted.length > 3) {
-        otherRanks.innerHTML = sorted.slice(3).map((t, i) => `
-          <div class="rank-row">
-            <div style="display:flex;align-items:center;gap:10px;">
-              <span style="font-weight:800;opacity:0.6;">#${i+4}</span>
-              <span style="font-weight:600;">${t.name}</span>
-            </div>
-            <span style="font-weight:700;color:var(--accent);font-family:'Space Grotesk',sans-serif;">${Number(t.score.toFixed(1))} PTS</span>
-          </div>`).join('');
-      } else { otherRanks.innerHTML = ''; }
-    }
-    
+    } else { otherRanks.innerHTML = ''; }
+  }
+  
+  if (teams.length > 1) {
     // Add to session highscores
     sessionHighscores.push({
       round: sessionHighscores.length + 1,
@@ -5891,97 +5910,23 @@ function endSinglePlayerGame() {
     
     // Update the winner screen hall of fame list view
     const medals = ['🥇','🥈','🥉','🏅'];
-    document.getElementById('hall-of-fame-list').innerHTML = sessionHighscores.map((g, i) => `
-      <div style="padding:12px 16px;background:rgba(255,255,255,0.03);border:1px solid rgba(251,191,36,0.15);border-radius:12px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
-        <div style="display:flex;align-items:center;gap:10px;">
-          <span style="font-size:1.2rem;">${medals[Math.min(i, 3)]}</span>
-          <div>
-            <div style="font-weight:800;font-family:'Space Grotesk',sans-serif;font-size:0.95rem;">Runde ${g.round}: ${g.winner}</div>
-            <div style="opacity:0.6;font-size:0.78rem;">Modus/Kategorie: ${g.category}</div>
+    const hofList = document.getElementById('hall-of-fame-list');
+    if (hofList) {
+      hofList.innerHTML = sessionHighscores.map((g, i) => `
+        <div style="padding:12px 16px;background:rgba(255,255,255,0.03);border:1px solid rgba(251,191,36,0.15);border-radius:12px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <span style="font-size:1.2rem;">${medals[Math.min(i, 3)]}</span>
+            <div>
+              <div style="font-weight:800;font-family:'Space Grotesk',sans-serif;font-size:0.95rem;">Runde ${g.round}: ${g.winner}</div>
+              <div style="opacity:0.6;font-size:0.78rem;">Modus/Kategorie: ${g.category}</div>
+            </div>
           </div>
-        </div>
-        <span style="font-weight:800;color:var(--gold);font-size:1rem;font-family:'Space Grotesk',sans-serif;">${Number(g.score.toFixed(1))} PTS</span>
-      </div>`).join('');
-      
-  } else {
-    document.getElementById('win-heading').innerText = "SPIEL BEENDET";
-    
-    let rank = "EU-Praktikant 📋";
-    if (singlePlayerScore >= 35) rank = "Kommissionspräsident 👑";
-    else if (singlePlayerScore >= 25) rank = "EU-Kommissar 💼";
-    else if (singlePlayerScore >= 15) rank = "Europa-Abgeordneter 🏛️";
-    else if (singlePlayerScore >= 5) rank = "EU-Referent 🖋️";
-    
-    document.getElementById('win-subheading').innerHTML = `
-      Modus: <strong>${modeText}</strong><br>
-      Erreichte Punktzahl: <strong style="color:var(--accent); font-size:1.4rem;">${singlePlayerScore} PTS</strong><br>
-      Dein Rang: <strong style="color:var(--gold); font-size:1.3rem;">${rank}</strong>
-    `;
-    
-    document.getElementById('podium-area').style.display = 'none';
-    document.getElementById('other-ranks').style.display = 'none';
-    
-    let spStats = document.getElementById('single-player-stats-container');
-    if (!spStats) {
-      spStats = document.createElement('div');
-      spStats.id = 'single-player-stats-container';
-      spStats.style.cssText = 'margin-top: 25px; text-align: left; width: 100%;';
-      const podiumArea = document.getElementById('podium-area');
-      podiumArea.parentNode.insertBefore(spStats, podiumArea.nextSibling);
+          <span style="font-weight:800;color:var(--gold);font-size:1rem;font-family:'Space Grotesk',sans-serif;">${Number(g.score.toFixed(1))} PTS</span>
+        </div>`).join('');
     }
-    spStats.style.display = 'block';
-    
-    let categoryStatsHTML = "";
-    if (gameMode !== 'flags') {
-      let correct = statsCategoryAnswers[activeCategory].c;
-      let wrong = statsCategoryAnswers[activeCategory].w;
-      let total = correct + wrong;
-      let pct = total > 0 ? Math.round(correct / total * 100) : 0;
-      
-      let strengthText = pct >= 70 ? "Stärke 🌟" : (pct >= 40 ? "Ausgeglichen 📊" : "Schwäche ⚠️");
-      let strengthColor = pct >= 70 ? "var(--success)" : (pct >= 40 ? "var(--accent)" : "var(--error)");
-      
-      categoryStatsHTML = `
-        <div style="padding: 15px; background: rgba(255,255,255,0.02); border: 1px solid var(--card-border); border-radius: 16px; margin-bottom: 20px;">
-          <h3 style="margin-top:0; font-family:'Space Grotesk',sans-serif; color:var(--accent); font-size:1.1rem; font-weight:700;">Kategorie-Statistik</h3>
-          <p style="font-size:0.9rem; margin: 5px 0;">Thema: <strong>${categoryNames[activeCategory]}</strong></p>
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 8px; font-size:0.85rem;">
-            <span>Erfolgsquote: <strong>${pct}%</strong> (${correct} von ${total} richtig)</span>
-            <span style="color:${strengthColor}; font-weight:800; text-transform:uppercase; font-size:0.8rem; letter-spacing:1px;">${strengthText}</span>
-          </div>
-          <div style="width:100%; height:10px; background:rgba(255,255,255,0.05); border-radius:10px; overflow:hidden;">
-            <div style="width:${pct}%; height:100%; background:linear-gradient(90deg, var(--accent), var(--accent-alt));"></div>
-          </div>
-        </div>
-      `;
-    }
-    
-    let achievementsListHTML = Object.values(achievements).map(ach => `
-      <div style="display:flex; align-items:center; gap: 12px; padding: 12px; background: ${ach.unlocked ? 'rgba(251,191,36,0.08)' : 'rgba(255,255,255,0.02)'}; border: 1px solid ${ach.unlocked ? 'rgba(251,191,36,0.3)' : 'var(--card-border)'}; border-radius: 12px; margin-bottom:8px;">
-        <div style="font-size:1.8rem; filter: ${ach.unlocked ? 'none' : 'grayscale(1) opacity(0.3)'};">
-          ${ach.id === 'diplomat' ? '💼' : (ach.id === 'weltenbummler' ? '🗺️' : (ach.id === 'millionaire' ? '💰' : (ach.id === 'streak' ? '🔥' : '💥')))}
-        </div>
-        <div style="flex:1;">
-          <div style="font-weight:800; font-size:0.95rem; color: ${ach.unlocked ? 'var(--gold)' : 'var(--text-secondary)'};">${ach.name} ${ach.unlocked ? '🏆' : ''}</div>
-          <div style="font-size:0.78rem; opacity:0.7;">${ach.desc}</div>
-        </div>
-        <div style="font-size:0.8rem; font-weight:700; color: ${ach.unlocked ? 'var(--success)' : 'var(--text-secondary)'};">
-          ${ach.unlocked ? 'Freigeschaltet' : 'Gesperrt'}
-        </div>
-      </div>
-    `).join('');
-    
-    spStats.innerHTML = `
-      ${categoryStatsHTML}
-      <div style="margin-top:20px;">
-        <h3 style="font-family:'Space Grotesk',sans-serif; color:var(--gold); margin-bottom:15px; font-size:1.1rem; font-weight:700;">Errungenschaften (Achievements)</h3>
-        <div style="display:flex; flex-direction:column; gap:10px;">
-          ${achievementsListHTML}
-        </div>
-      </div>
-    `;
-    saveAchievements();
   }
+  
+  saveAchievements();
   confetti.start();
 }
 
@@ -6243,6 +6188,8 @@ function mpInitHost() {
   
   // Automatically remove room if host disconnects
   mpRoomRef.onDisconnect().remove();
+  mpRoomRef.child('emotes').remove();
+  mpStartEmoteListener();
   
   // Set dropdown defaults in lobby UI
   document.getElementById('mp-host-setting-qcount').value = "15";
@@ -6375,12 +6322,36 @@ function mpHostLoadQuestion(index) {
         const playersVal = snapshot.val() || {};
         let total = 0;
         let answered = 0;
+        
+        let scoreboardHTML = "";
+        const pArr = [];
         for (let pid in playersVal) {
-          total++;
-          if (playersVal[pid].answer !== null && playersVal[pid].answer !== undefined) {
-            answered++;
-          }
+          pArr.push({ id: pid, ...playersVal[pid] });
         }
+        pArr.sort((a, b) => (b.score || 0) - (a.score || 0));
+        
+        pArr.forEach((p, idx) => {
+          total++;
+          const hasAnswered = p.answer !== null && p.answer !== undefined;
+          if (hasAnswered) answered++;
+          
+          scoreboardHTML += `
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 12px; background:rgba(255,255,255,0.03); border:1px solid var(--card-border); border-radius:8px; font-size:0.85rem; margin-bottom: 6px;">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <span style="font-weight:800; opacity:0.6;">#${idx+1}</span>
+                <span style="font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:120px;">${p.name}</span>
+                <span style="font-size:0.75rem;" title="${hasAnswered ? 'Antwort abgegeben' : 'Wartet auf Antwort'}">
+                  ${hasAnswered ? '✅' : '⏳'}
+                </span>
+              </div>
+              <span style="color:var(--accent); font-weight:800; font-family:'Space Grotesk',sans-serif;">${p.score || 0} PTS</span>
+            </div>
+          `;
+        });
+        
+        const liveSb = document.getElementById('mp-host-live-scoreboard');
+        if (liveSb) liveSb.innerHTML = scoreboardHTML;
+        
         document.getElementById('mp-host-answers-count').innerText = answered;
         document.getElementById('mp-host-total-players').innerText = total;
         
@@ -6822,6 +6793,7 @@ function mpPlayerSubmitAnswer(index) {
 
 function mpPlayerResetAll() {
   if (mpRoomRef) {
+    mpRoomRef.child('emotes').off();
     mpRoomRef.off();
   }
   mpRoomCode = null;
@@ -6850,6 +6822,7 @@ function mpGetCategoryName(catId) {
 
 function mpGenerateSessionQuestions(count, categoryFilter = 'all') {
   const list = [];
+  const seenTexts = new Set();
   for (let catId in pool) {
     if (categoryFilter !== 'all' && catId.toString() !== categoryFilter.toString()) continue;
     const category = pool[catId];
@@ -6859,10 +6832,16 @@ function mpGenerateSessionQuestions(count, categoryFilter = 'all') {
         const item = diffs[diffId];
         if (Array.isArray(item)) {
           item.forEach(q => {
-            list.push({ ...q, category: parseInt(catId), country: country });
+            if (!seenTexts.has(q.q)) {
+              seenTexts.add(q.q);
+              list.push({ ...q, category: parseInt(catId), country: country });
+            }
           });
         } else if (item && item.q) {
-          list.push({ ...item, category: parseInt(catId), country: country });
+          if (!seenTexts.has(item.q)) {
+            seenTexts.add(item.q);
+            list.push({ ...item, category: parseInt(catId), country: country });
+          }
         }
       }
     }
@@ -6880,6 +6859,297 @@ function mpGetExplanation(qData, correctAnswerText) {
   }
   return `Die richtige Antwort lautet: <strong>${correctAnswerText}</strong>.`;
 }
+
+// --- NEW ACCESSIBILITY, HANDBOOK, AUDIO AND MULTIPLAYER LOGIC ---
+
+// Accessibility Globals
+let accessibilityTTSActive = false;
+let accessibilityTextSize = 'normal';
+let accessibilityContrastActive = false;
+let speechUtterance = null;
+
+function openAccessibilityPanel() {
+  sounds.playClick();
+  document.getElementById('accessibility-modal').style.display = 'flex';
+  document.getElementById('access-tts-toggle').checked = accessibilityTTSActive;
+  document.getElementById('access-contrast-toggle').checked = accessibilityContrastActive;
+  document.getElementById('access-text-size').value = accessibilityTextSize;
+}
+
+function closeAccessibilityPanel() {
+  sounds.playClick();
+  document.getElementById('accessibility-modal').style.display = 'none';
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.cancel();
+  }
+}
+
+function toggleAccessibilityTTS() {
+  accessibilityTTSActive = document.getElementById('access-tts-toggle').checked;
+  sounds.playClick();
+  if (accessibilityTTSActive) {
+    speakText("Vorlesefunktion aktiviert.");
+  } else {
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+    }
+  }
+}
+
+function changeAccessibilityTextSize() {
+  const size = document.getElementById('access-text-size').value;
+  accessibilityTextSize = size;
+  sounds.playClick();
+  
+  document.body.classList.remove('access-text-large', 'access-text-xlarge');
+  if (size === 'large') {
+    document.body.classList.add('access-text-large');
+  } else if (size === 'xlarge') {
+    document.body.classList.add('access-text-xlarge');
+  }
+}
+
+function toggleAccessibilityContrast() {
+  accessibilityContrastActive = document.getElementById('access-contrast-toggle').checked;
+  sounds.playClick();
+  if (accessibilityContrastActive) {
+    document.body.classList.add('accessibility-high-contrast');
+  } else {
+    document.body.classList.remove('accessibility-high-contrast');
+  }
+}
+
+function speakText(text) {
+  if (!('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+  if (!accessibilityTTSActive) return;
+  speechUtterance = new SpeechSynthesisUtterance(text);
+  speechUtterance.lang = 'de-DE';
+  window.speechSynthesis.speak(speechUtterance);
+}
+
+function speakCurrentQuestion() {
+  if (!accessibilityTTSActive) return;
+  const qData = (gameMode === 'flags') ? currentFlagQuestion : currentQuestionData;
+  if (!qData) return;
+  let optionsText = "";
+  if (qData.o && qData.o.length === 4) {
+    optionsText = ". Antwort A: " + qData.o[0] + 
+                  ". Antwort B: " + qData.o[1] + 
+                  ". Antwort C: " + qData.o[2] + 
+                  ". Antwort D: " + qData.o[3];
+  }
+  speakText(qData.q + optionsText);
+}
+
+// Keyboard Navigation Listener
+document.addEventListener('keydown', function(e) {
+  if (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'TEXTAREA') return;
+  const dialog = document.getElementById('quiz-dialog');
+  if (dialog && dialog.open) {
+    if (e.key === '1') triggerOptionClick(0);
+    else if (e.key === '2') triggerOptionClick(1);
+    else if (e.key === '3') triggerOptionClick(2);
+    else if (e.key === '4') triggerOptionClick(3);
+    else if (e.key === 'Enter') {
+      const nextBtn = document.getElementById('next-btn');
+      if (nextBtn && nextBtn.style.display !== 'none' && !nextBtn.disabled) {
+        nextBtn.click();
+      }
+    }
+  }
+});
+
+function triggerOptionClick(index) {
+  const opt = document.getElementById('opt-' + index);
+  if (opt) opt.click();
+}
+
+// EU-Handbuch Database and UI
+const handbookData = {
+  "Belgien": { capital: "Brüssel", year: 1951, pop: "11,7 Mio.", info: "Gründungsmitglied der EGKS. Brüssel beherbergt die Hauptsitze der EU-Kommission und des Rates." },
+  "Bulgarien": { capital: "Sofia", year: 2007, pop: "6,4 Mio.", info: "Liegt am Schwarzen Meer. Bulgarien engagiert sich aktiv in der EU-Westbalkanpolitik." },
+  "Dänemark": { capital: "Kopenhagen", year: 1973, pop: "5,9 Mio.", info: "Nutzt Opt-outs (Vorbehalte), z.B. beim Euro, und behielt die Dänische Krone als Währung." },
+  "Deutschland": { capital: "Berlin", year: 1951, pop: "84,4 Mio.", info: "Bevölkerungsreichstes EU-Land. Stellt mit 96 Abgeordneten die größte Delegation im EU-Parlament." },
+  "Estland": { capital: "Tallinn", year: 2004, pop: "1,3 Mio.", info: "Weltweiter Vorreiter im Bereich E-Government. Führte 2011 als erstes baltisches Land den Euro ein." },
+  "Finnland": { capital: "Helsinki", year: 1995, pop: "5,5 Mio.", info: "Einziges nordisches EU-Mitglied, das sofort den Euro einführte. Bekannt für sein exzellentes Bildungssystem." },
+  "Frankreich": { capital: "Paris", year: 1951, pop: "68,1 Mio.", info: "Gründungsmitglied und treibende Kraft. Straßburg ist der offizielle Hauptsitz des EU-Parlaments." },
+  "Griechenland": { capital: "Athen", year: 1981, pop: "10,4 Mio.", info: "Wiege der Demokratie. Der Beitritt sollte die junge Demokratie nach der Militärdiktatur stabilisieren." },
+  "Irland": { capital: "Dublin", year: 1973, pop: "5,2 Mio.", info: "Entwickelte sich nach dem Beitritt vom Agrarstaat zum High-Tech-Zentrum der EU." },
+  "Italien": { capital: "Rom", year: 1951, pop: "58,9 Mio.", info: "Gründungsmitglied. Hier wurden 1957 die Römischen Verträge unterzeichnet, das Fundament der EWG." },
+  "Kroatien": { capital: "Zagreb", year: 2013, pop: "3,8 Mio.", info: "Jüngster EU-Mitgliedstaat. Trat am 1. Januar 2023 zeitgleich der Eurozone und dem Schengen-Raum bei." },
+  "Lettland": { capital: "Riga", year: 2004, pop: "1,8 Mio.", info: "Zentrum des Baltikums. Riga besitzt ein UNESCO-geschütztes Jugendstil-Viertel. Euro-Einführung 2014." },
+  "Litauen": { capital: "Vilnius", year: 2004, pop: "2,8 Mio.", info: "Liegt am geografischen Mittelpunkt Europas (errechnet 1989). Führte 2015 den Euro ein." },
+  "Luxemburg": { capital: "Luxemburg", year: 1951, pop: "660.000", info: "Gründungsmitglied. Sitz des EuGH. Eines der drei offiziellen Arbeitszentren der EU." },
+  "Malta": { capital: "Valletta", year: 2004, pop: "530.000", info: "Flächen- und bevölkerungsmäßig kleinster EU-Mitgliedstaat. Liegt strategisch günstig im Mittelmeer." },
+  "Niederlande": { capital: "Amsterdam", year: 1951, pop: "17,8 Mio.", info: "Gründungsmitglied. Den Haag beherbergt wichtige Organe und Agenturen (z.B. Europol)." },
+  "Österreich": { capital: "Wien", year: 1995, pop: "9,1 Mio.", info: "Trat nach dem Ende des Kalten Krieges bei. Wichtiges Brückenland zu den mittel- und osteuropäischen Staaten." },
+  "Polen": { capital: "Warschau", year: 2004, pop: "36,7 Mio.", info: "Flächenmäßig größtes Land der Ostererweiterung 2004. Die Oder-Neiße-Grenze trennt es von Deutschland." },
+  "Portugal": { capital: "Lissabon", year: 1986, pop: "10,4 Mio.", info: "Trat zeitgleich mit Spanien bei. Der Vertrag von Lissabon (2007) reformierte die Funktionsweise der EU." },
+  "Rumänien": { capital: "Rumänien", year: 2007, pop: "19,0 Mio.", info: "Trat 2007 bei. Die Donau mündet hier im UNESCO-Weltnaturerbe Donaudelta ins Schwarze Meer." },
+  "Schweden": { capital: "Stockholm", year: 1995, pop: "10,5 Mio.", info: "Drittgrößtes EU-Land nach Fläche. Behielt die Schwedische Krone nach einem Währungsreferendum." },
+  "Slowakei": { capital: "Bratislava", year: 2004, pop: "5,4 Mio.", info: "Bratislava liegt direkt an den Grenzen zu Österreich und Ungarn. Führte 2009 den Euro ein." },
+  "Slowenien": { capital: "Ljubljana", year: 2004, pop: "2,1 Mio.", info: "Erster Staat des ehemaligen Jugoslawiens in der EU. Führte 2007 als erstes der neuen Länder den Euro ein." },
+  "Spanien": { capital: "Madrid", year: 1986, pop: "48,0 Mio.", info: "Trat 1986 bei. Bedeutender Akteur im Mittelmeerraum und Bindeglied zu Lateinamerika." },
+  "Tschechien": { capital: "Prag", year: 2004, pop: "10,8 Mio.", info: "Böhmen und Mähren bilden ein reiches Industrie- und Kulturzentrum. Prag besitzt eine der ältesten Brücken." },
+  "Ungarn": { capital: "Budapest", year: 2004, pop: "9,6 Mio.", info: "Trat 2004 bei. Budapest wird durch die Donau in die historischen Stadtteile Buda und Pest geteilt." },
+  "Zypern": { capital: "Nikosia", year: 2004, pop: "920.000", info: "Inselstaat im östlichen Mittelmeer. Völkerrechtlich gehört die ganze Insel zur EU, der Norden ist geteilt." }
+};
+
+function showHandbook() {
+  sounds.playClick();
+  document.getElementById('start-screen').style.display = 'none';
+  document.getElementById('handbook-modal').style.display = 'flex';
+  document.getElementById('handbook-search').value = "";
+  renderHandbookGrid();
+  document.getElementById('handbook-detail-card').innerHTML = `
+    <div style="text-align:center; padding:30px 10px; color:var(--text-secondary);">
+      <span style="font-size:3rem;">🇪🇺</span>
+      <p style="font-weight:700; margin-top:10px;">Wähle ein Land aus, um den Steckbrief anzuzeigen.</p>
+    </div>
+  `;
+}
+
+function closeHandbook() {
+  sounds.playClick();
+  document.getElementById('handbook-modal').style.display = 'none';
+  document.getElementById('start-screen').style.display = 'flex';
+}
+
+function renderHandbookGrid() {
+  const container = document.getElementById('handbook-grid-container');
+  if (!container) return;
+  const searchVal = document.getElementById('handbook-search').value.toLowerCase().trim();
+  container.innerHTML = "";
+  countries.forEach((c, idx) => {
+    if (searchVal && c.n.toLowerCase().indexOf(searchVal) === -1) return;
+    const isUnlocked = c.p[1] || c.p[2] || c.p[3];
+    const card = document.createElement('div');
+    card.className = 'handbook-card' + (isUnlocked ? '' : ' locked');
+    card.onclick = function() {
+      if (isUnlocked) {
+        showHandbookDetails(c.n);
+      } else {
+        sounds.playError();
+        alert(c.n + " ist noch gesperrt. Spiele dieses Land in der Kampagne frei!");
+      }
+    };
+    card.innerHTML = `
+      <div style="font-size: 2.2rem; margin-bottom: 5px;">${c.f}</div>
+      <div style="font-weight: 700; font-size: 0.85rem; color: var(--text-primary); text-overflow:ellipsis; overflow:hidden; white-space:nowrap;">${c.n}</div>
+      <div style="font-size: 0.7rem; color: ${isUnlocked ? 'var(--success)' : 'var(--text-secondary)'}; margin-top: 5px; font-weight:700;">
+        ${isUnlocked ? '🔓 Frei' : '🔒 Gesperrt'}
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+function filterHandbook() {
+  renderHandbookGrid();
+}
+
+function showHandbookDetails(countryName) {
+  sounds.playClick();
+  const data = handbookData[countryName];
+  const countryObj = countries.find(c => c.n === countryName);
+  if (!data || !countryObj) return;
+  const detailCard = document.getElementById('handbook-detail-card');
+  detailCard.innerHTML = `
+    <div style="text-align:center; border-bottom:1px solid var(--card-border); padding-bottom:15px; margin-bottom:15px;">
+      <span style="font-size:3.5rem; display:block; margin-bottom:5px;">${countryObj.f}</span>
+      <h3 style="font-family:'Space Grotesk',sans-serif; color:var(--accent); font-size:1.6rem; font-weight:800; margin:0;">${countryName}</h3>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:12px; font-size:0.9rem;">
+      <div>
+        <strong style="color:var(--gold);">🏛️ Hauptstadt:</strong>
+        <span style="color:var(--text-primary); margin-left:5px;">${data.capital}</span>
+      </div>
+      <div>
+        <strong style="color:var(--gold);">📅 EU-Beitritt:</strong>
+        <span style="color:var(--text-primary); margin-left:5px;">${data.year}</span>
+      </div>
+      <div>
+        <strong style="color:var(--gold);">👥 Einwohner:</strong>
+        <span style="color:var(--text-primary); margin-left:5px;">${data.pop}</span>
+      </div>
+      <div style="margin-top:10px; border-top:1px dashed var(--card-border); padding-top:12px;">
+        <strong style="color:var(--accent); display:block; margin-bottom:6px;">💡 Didaktischer Steckbrief:</strong>
+        <p style="margin:0; font-size:0.85rem; line-height:1.5; color:var(--text-primary);">${data.info}</p>
+      </div>
+    </div>
+  `;
+}
+
+// Category Stats Visualisation
+function renderCategoryStats() {
+  const container = document.getElementById('category-stats-bars');
+  if (!container) return;
+  container.innerHTML = "";
+  let hasData = false;
+  for (let catId = 1; catId <= 5; catId++) {
+    const stats = statsCategoryAnswers[catId];
+    const total = stats.c + stats.w;
+    if (total > 0) {
+      hasData = true;
+      const pct = Math.round((stats.c / total) * 100);
+      const name = categoryNames[catId];
+      const barHTML = `
+        <div style="margin-bottom: 10px;">
+          <div style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 700; margin-bottom: 4px;">
+            <span>${name}</span>
+            <span>${stats.c} / ${total} richtig (${pct}%)</span>
+          </div>
+          <div style="width: 100%; height: 8px; background: rgba(255,255,255,0.05); border-radius: 4px; overflow: hidden;">
+            <div style="width: ${pct}%; height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-alt)); border-radius: 4px;"></div>
+          </div>
+        </div>
+      `;
+      container.innerHTML += barHTML;
+    }
+  }
+  const section = document.getElementById('category-stats-section');
+  if (section) section.style.display = hasData ? 'block' : 'none';
+}
+
+// Multiplayer Emotes & Reactive Listeners
+let mpEmoteListenerActive = false;
+
+function mpPlayerSendEmote(emoji) {
+  if (!mpRoomRef || !mpPlayerId) return;
+  sounds.playClick();
+  const emoteRef = mpRoomRef.child('emotes').push();
+  emoteRef.set({
+    player: document.getElementById('mp-player-lobby-name').innerText || 'Spieler',
+    emoji: emoji,
+    timestamp: Date.now()
+  });
+}
+
+function mpStartEmoteListener() {
+  if (mpEmoteListenerActive || !mpRoomRef) return;
+  mpEmoteListenerActive = true;
+  mpRoomRef.child('emotes').on('child_added', snapshot => {
+    const emote = snapshot.val();
+    if (!emote) return;
+    if (Date.now() - emote.timestamp > 10000) return;
+    triggerFloatingEmote(emote.emoji, emote.player);
+  });
+}
+
+function triggerFloatingEmote(emoji, playerName) {
+  const div = document.createElement('div');
+  div.className = 'floating-emote';
+  div.innerText = emoji;
+  div.style.left = Math.floor(Math.random() * 80 + 10) + 'vw';
+  div.style.bottom = '10vh';
+  const label = document.createElement('span');
+  label.innerText = playerName;
+  label.style.cssText = 'display:block; font-size:0.75rem; background:rgba(0,0,0,0.6); color:#fff; padding:2px 6px; border-radius:4px; margin-top:2px; font-weight:700; font-family:sans-serif; text-align:center;';
+  div.appendChild(label);
+  document.body.appendChild(div);
+  setTimeout(() => div.remove(), 2500);
+}
 </script>
 
 <hr style="margin-top: 50px; border: 0; border-top: 1px solid #333;">
@@ -6896,6 +7166,54 @@ function mpGetExplanation(qData, correctAnswerText) {
         <a href="#" id="openVersion" style="color: #666; text-decoration: none; font-size: 12px;">Version 3.0</a>
     </div>
 </footer>
+
+<!-- Accessibility Modal -->
+<div id="accessibility-modal" class="screen" style="display:none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 10000; justify-content: center; align-items: center; padding: 20px;">
+  <div class="card-box" style="max-width: 500px; width: 100%; border: 1px solid var(--accent); position: relative;">
+    <button style="position: absolute; top: 15px; right: 15px; background: none; border: none; color: var(--text-secondary); font-size: 1.5rem; cursor: pointer;" onclick="closeAccessibilityPanel()">×</button>
+    <h2 style="font-family: 'Space Grotesk', sans-serif; color: var(--accent); font-size: 1.8rem; margin-top:0; font-weight: 700; display:flex; align-items:center; gap:10px;">♿ Barrierefreiheit</h2>
+    <p style="opacity: 0.7; margin-bottom: 20px; font-size: 0.9rem;">Passe das Spielerlebnis an deine Bedürfnisse an.</p>
+    
+    <div style="display:flex; flex-direction:column; gap:20px; text-align:left; margin-bottom:25px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; border-bottom: 1px solid var(--card-border); padding-bottom:12px;">
+        <div>
+          <div style="font-weight:700; font-size:1rem;">🔊 Vorlesefunktion (Text-to-Speech)</div>
+          <div style="font-size:0.8rem; opacity:0.7;">Liest Fragen und Antworten laut vor.</div>
+        </div>
+        <label class="switch">
+          <input type="checkbox" id="access-tts-toggle" onchange="toggleAccessibilityTTS()">
+          <span class="slider"></span>
+        </label>
+      </div>
+      <div style="display:flex; justify-content:space-between; align-items:center; border-bottom: 1px solid var(--card-border); padding-bottom:12px;">
+        <div>
+          <div style="font-weight:700; font-size:1rem;">🔎 Schriftgröße</div>
+          <div style="font-size:0.8rem; opacity:0.7;">Skaliere die Textgröße im Spiel.</div>
+        </div>
+        <select id="access-text-size" onchange="changeAccessibilityTextSize()" style="background:var(--card-bg); color:var(--text-primary); border:1px solid var(--card-border); padding:6px 12px; border-radius:8px; font-weight:600;">
+          <option value="normal">Standard</option>
+          <option value="large">Groß</option>
+          <option value="xlarge">Sehr Groß</option>
+        </select>
+      </div>
+      <div style="display:flex; justify-content:space-between; align-items:center; border-bottom: 1px solid var(--card-border); padding-bottom:12px;">
+        <div>
+          <div style="font-weight:700; font-size:1rem;">🌓 Kontrastmodus</div>
+          <div style="font-size:0.8rem; opacity:0.7;">Erleichtert das Lesen durch hohe Kontraste.</div>
+        </div>
+        <label class="switch">
+          <input type="checkbox" id="access-contrast-toggle" onchange="toggleAccessibilityContrast()">
+          <span class="slider"></span>
+        </label>
+      </div>
+      <div>
+        <div style="font-weight:700; font-size:1rem; margin-bottom:5px;">⌨️ Tastatursteuerung</div>
+        <div style="font-size:0.8rem; opacity:0.7;">Nutze die Tasten <strong>1 bis 4</strong> zur Auswahl von Antworten und <strong>Enter</strong> für den nächsten Schritt.</div>
+      </div>
+    </div>
+    <button class="btn-main" onclick="closeAccessibilityPanel()">Fertig</button>
+  </div>
+</div>
 
 <div id="legalModal" style="display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); overflow-y: auto;">
     <div style="background-color: #1a1a1a; color: #ccc; margin: 5% auto; padding: 30px; border: 1px solid #444; width: 80%; max-width: 800px; border-radius: 8px; position: relative; font-size: 14px; line-height: 1.6; text-align: left; font-family: sans-serif;">
@@ -6935,13 +7253,13 @@ const datenschutzText = `
 
 // HIER KANNST DU DEINE VERSIONS-TEXTE ANPASSEN
 const versionText = `
-    <h2 style="color: #fff; margin-top: 0;">Versionshinweise (v2.0)</h2>
+    <h2 style="color: #fff; margin-top: 0;">Versionshinweise (v3.0)</h2>
     <hr style="border: 0; border-top: 1px solid #444; margin-bottom: 15px;">
     
     <h3 style="color: #00bcd4; margin-bottom: 5px;">Aktuelle Version 3.0</h3>
     <p style="margin-top: 0;">
-        - Version 3.0 (22.06.2026).<br>
-        - Neu: Online Multiplayer (Beta), Neue Fragen, Bugfixes.<br>
+        - Version 3.0 (28.06.2026).<br>
+        - Neu: Web-Audio-Synthesizer, Barrierefreiheit (Vorlesefunktion, Kontrastmodus, Schriftgrößen, Tastatursteuerung), Multiplayer-Emotes, Rundenstatistiken nach Kategorien.<br>
     </p>
     
     <h3 style="color: #28a745; margin-top: 20px; margin-bottom: 5px;">Zukünftige Updates</h3>
@@ -6991,4 +7309,6 @@ window.addEventListener("click", function(e) {
 </script>
 </body>
 </html>
+
+
 
